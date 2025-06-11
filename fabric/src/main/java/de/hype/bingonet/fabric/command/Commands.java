@@ -73,62 +73,6 @@ public class Commands implements MCCommand {
             miningEvent(dispatcher, "raffle", MiningEvents.RAFFLE);/*raffle*/
             miningEvent(dispatcher, "gonewiththewind", MiningEvents.GONE_WITH_THE_WIND);/*gonewiththewind*/
             miningEvent(dispatcher, "mithrilgourmand", MiningEvents.MITHRIL_GOURMAND);/*gonewiththewind*/
-            dispatcher.register(literal("chchest")
-                    .then(argument("Item", StringArgumentType.string())
-                            .suggests((context, builder) -> {
-                                List<String> items = ChChestItems.getAllItems().stream().map(ChChestItem::getDisplayName).toList();
-                                String inputTemporary = builder.getRemaining().replace("\"", "");
-                                int lastIndex = inputTemporary.lastIndexOf(";");
-                                boolean suggestLastQuote;
-                                if (lastIndex == -1) {
-                                    suggestLastQuote = true;
-                                    lastIndex = 0;
-                                } else {
-                                    lastIndex++;
-                                    suggestLastQuote = false;
-                                }
-                                String input = inputTemporary.substring(0, lastIndex);
-                                String currentItemSuggestionStart = input.substring(lastIndex);
-
-                                List<String> suggestions = items.stream().filter((item) -> item.toLowerCase().startsWith(currentItemSuggestionStart.toLowerCase())).map((newItem) -> {
-                                    if (suggestLastQuote) {
-                                        return "\"" + input + newItem + "\"";
-                                    } else {
-                                        return "\"" + input + newItem;
-                                    }
-                                }).toList();
-
-                                return CommandSource.suggestMatching(suggestions, builder);
-                            })
-                            .then(argument("coordinates", CBlockPosArgument.blockPos())
-                                    .then(argument("ContactWay", StringArgumentType.string())
-                                            .suggests(((context, builder) -> CommandSource.suggestMatching(new String[]{"\"/msg " + BingoNet.generalConfig.getUsername() + " bb:party me\"", "\"/p join " + BingoNet.generalConfig.getUsername() + "\""}, builder)))
-                                            .then(argument("extraMessage", StringArgumentType.greedyString())
-                                                    .requires(fabricClientCommandSource -> {
-                                                        return EnvironmentCore.utils.getCurrentIsland() == Islands.CRYSTAL_HOLLOWS && BingoNet.generalConfig.hasBBRoles(BBRole.CHCHEST_ANNOUNCE_PERM);
-                                                    })
-                                                    .executes((context) -> {
-                                                                String item = StringArgumentType.getString(context, "Item");
-                                                                BlockPos pos = CBlockPosArgument.getBlockPos((CommandContext<FabricClientCommandSource>) (Object) context, "coordinates");
-                                                                String contactWay = StringArgumentType.getString(context, "ContactWay");
-                                                                String extraMessage = StringArgumentType.getString(context, "extraMessage");
-                                                        BingoNet.connection.annonceChChest(new Position(pos.getX(), pos.getY(), pos.getZ()), ChChestItems.getItems(item.split(";")), contactWay, extraMessage);
-                                                                return 1;
-                                                            }
-                                                    )
-                                            )
-                                            .executes((context) -> {
-                                                        String item = StringArgumentType.getString(context, "Item");
-                                                        BlockPos pos = CBlockPosArgument.getBlockPos((CommandContext<FabricClientCommandSource>) (Object) context, "coordinates");
-                                                        String contactWay = StringArgumentType.getString(context, "ContactWay");
-                                                BingoNet.connection.annonceChChest(new Position(pos.getX(), pos.getY(), pos.getZ()), ChChestItems.getItems(item.split(";")), contactWay, "");
-                                                        return 1;
-                                                    }
-                                            )
-                                    )
-                            )
-                    )
-            );/*chchest*/
             dispatcher.register(
                     literal("bc").requires((fabricClientCommandSource) ->
                                     BingoNet.connection.isConnected()

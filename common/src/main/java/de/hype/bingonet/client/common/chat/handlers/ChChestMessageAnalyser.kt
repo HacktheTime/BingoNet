@@ -1,67 +1,82 @@
-package de.hype.bingonet.client.common.chat.handlers;
+package de.hype.bingonet.client.common.chat.handlers
 
-import de.hype.bingonet.client.common.annotations.MessageSubscribe;
-import de.hype.bingonet.client.common.chat.Chat;
-import de.hype.bingonet.client.common.chat.IsABBChatModule;
-import de.hype.bingonet.client.common.chat.Message;
-import de.hype.bingonet.client.common.chat.MessageEvent;
-import de.hype.bingonet.client.common.client.BingoNet;
-import de.hype.bingonet.shared.constants.ChChestItem;
-import de.hype.bingonet.shared.constants.ChChestItems;
-import org.apache.commons.text.StringEscapeUtils;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import de.hype.bingonet.client.common.annotations.MessageSubscribe
+import de.hype.bingonet.client.common.bingobrewers.BingoBrewersClient
+import de.hype.bingonet.client.common.bingobrewers.BingoBrewersPackets
+import de.hype.bingonet.client.common.chat.IsABBChatModule
+import de.hype.bingonet.client.common.chat.MessageEvent
+import de.hype.bingonet.client.common.client.BingoNet
+import de.hype.bingonet.client.common.mclibraries.EnvironmentCore
+import de.hype.bingonet.shared.constants.ChChestItem
+import de.hype.bingonet.shared.objects.ChChestData
+import de.hype.bingonet.shared.packets.mining.ChChestPacket
 
 @IsABBChatModule
-public class ChChestMessageAnalyser {
-    public boolean isInMessage;
-    public List<ChChestItem> items = new ArrayList<>();
+class ChChestMessageAnalyser {
+    var isInMessage: Boolean = false
+    var items: MutableMap<ChChestItem, IntRange> = HashMap()
 
     @MessageSubscribe(name = "chchestsharing")
-    public void onChatMessage(MessageEvent event) {
-        if (!isInMessage && (
-//                event.message.getUnformattedString().matches(".*CHEST LOCKPICKED.*") ||
-                event.message.getUnformattedString().matches(".*LOOT CHEST COLLECTED.*"))) {
-            isInMessage = true;
+    fun onChatMessage(event: MessageEvent) {
+        if (!isInMessage && ( //                event.message.getUnformattedString().matches(".*CHEST LOCKPICKED.*") ||
+                    event.message.getUnformattedString().matches(".*LOOT CHEST COLLECTED.*".toRegex()))
+        ) {
+            isInMessage = true
             if (BingoNet.chChestConfig.hideLootChestUnimportant) {
-                event.deleteFromChat(1);
-                event.cancel();
+                event.deleteFromChat(1)
+                event.cancel()
             }
-            return;
-        }
-        else if (isInMessage && event.message.getUnformattedString().matches("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")) {
-            event.cancel();
-            isInMessage = false;
+            return
+        } else if (isInMessage && event.message.getUnformattedString()
+                .matches("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬".toRegex())
+        ) {
+            event.cancel()
+            isInMessage = false
             if (!items.isEmpty()) {
-                List<ChChestItem> finalItems = new ArrayList<>(items);
-                try {
-                    //{"jformat":8,"jobject":[{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"font":null,"color":"light_purple","insertion":"","click_event_type":"suggest_command","click_event_value":"@suggestCommand","hover_event_type":"none","hover_event_value":"","hover_event_children":[],"text":"BB: Global Chest Detected! "},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"font":null,"color":"none","insertion":"","click_event_type":"suggest_command","click_event_value":"@suggestCommand","hover_event_type":"none","hover_event_value":"","hover_event_children":[],"text":"Press ("},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"font":null,"color":"none","insertion":"","click_event_type":"suggest_command","click_event_value":"@suggestCommand","hover_event_type":"none","hover_event_value":"","hover_event_children":[],"keybind":"Chat Prompt Yes / Open Menu"},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"font":null,"color":"none","insertion":"","click_event_type":"suggest_command","click_event_value":"@suggestCommand","hover_event_type":"none","hover_event_value":"","hover_event_children":[],"text":") to send or Click ("},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"font":null,"color":"gold","insertion":"","click_event_type":"suggest_command","click_event_value":"@suggestCommand","hover_event_type":"none","hover_event_value":"","hover_event_children":[],"text":"THIS"},{"bold":false,"italic":false,"underlined":false,"strikethrough":false,"obfuscated":false,"font":null,"color":"none","insertion":"","click_event_type":"suggest_command","click_event_value":"@suggestCommand","hover_event_type":"none","hover_event_value":"","hover_event_children":[],"text":") Message to edit it as a preset."}],"command":"%s","jtemplate":"tellraw"}
-                    String tellraw = "[\"\",{\"text\":\"BB: Global Chest Detected! \",\"color\":\"light_purple\",\"clickEvent\":{\"action\":\"suggest_command\",\"value\":\"@suggestCommand\"}},{\"text\":\"Press (\",\"clickEvent\":{\"action\":\"suggest_command\",\"value\":\"@suggestCommand\"}},{\"keybind\":\"Chat Prompt Yes / Open Menu\",\"clickEvent\":{\"action\":\"suggest_command\",\"value\":\"@suggestCommand\"}},{\"text\":\") to send or Click (\",\"clickEvent\":{\"action\":\"suggest_command\",\"value\":\"@suggestCommand\"}},{\"text\":\"THIS\",\"color\":\"gold\",\"clickEvent\":{\"action\":\"suggest_command\",\"value\":\"@suggestCommand\"}},{\"text\":\") Message to edit it as a preset.\",\"clickEvent\":{\"action\":\"suggest_command\",\"value\":\"@suggestCommand\"}}]";
-                    String suggestCommand = "/chchest \"" + finalItems.stream().map(ChChestItem::getDisplayName).collect(Collectors.joining(";")) + "\" " + BingoNet.temporaryConfig.lastGlobalChchestCoords.toString() + " \"/msg " + BingoNet.generalConfig.getUsername() + " bb:party me\"";
-                    suggestCommand = StringEscapeUtils.escapeJson(suggestCommand);
-                    tellraw = tellraw.replace("@suggestCommand", suggestCommand);
-                    if (BingoNet.developerConfig.devMode)
-                        Chat.sendPrivateMessageToSelfDebug("Set new Possibly Global ChChest Announcement too: \n" + suggestCommand);
-                    Chat.sendPrivateMessageToSelfText(Message.tellraw(tellraw));
-                    Chat.setChatCommand(() -> {
-                        BingoNet.connection.annonceChChest(BingoNet.temporaryConfig.lastGlobalChchestCoords, finalItems, "/msg " + BingoNet.generalConfig.getUsername() + " bb:party me", "Ⓐ");
-                        Chat.sendPrivateMessageToSelfInfo("Announcement Sent!");
-                    }, 10);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                val coords = BingoNet.temporaryConfig.lastGlobalChchestCoords
+                val chest = ChChestData(coords, items)
+                val serverId = BingoNet.dataStorage.serverId
+                val bnPacket = ChChestPacket(chest, serverId, EnvironmentCore.utils.lobbyClosingTime)
+                BingoNet.connection.sendPacket(bnPacket)
+                if (BingoNet.bingoBrewersIntegrationConfig.showChests) {
+                    val packet = BingoBrewersPackets.sendCHItems()
+                    packet.x = coords.x
+                    packet.y = coords.y
+                    packet.z = coords.z
+                    packet.items = items.map { (item, count) ->
+                        val bItem = BingoBrewersPackets.CHChestItem()
+                        bItem.name = item.displayName
+                        bItem.count = count.toString()
+                        bItem.itemColor = item.itemFormatting.color?.rgb
+                        bItem.numberColor = item.countFormatting.color?.rgb
+                        return@map bItem
+                    }
+                    packet.server = serverId
+                    packet.day = EnvironmentCore.utils.lobbyDay
+                    BingoBrewersClient.sendTCP(packet)
                 }
             }
-            items.clear();
+            items.clear()
         }
-        if (!isInMessage) return;
+        if (!isInMessage) return
 
         if (event.message.getUnformattedString().isEmpty()) {
-            event.cancel();
-            return;
+            event.cancel()
+            return
         }
-        ChChestItem item = ChChestItems.getPredefinedItem(event.message.getUnformattedString());
-        if (item != null) items.add(item);
+        val parsed = ChChestItem.parse(event.message.string);
+        if (parsed != null) items.compute(parsed.component1()) { k, v -> parsed.component2().plus(v ?: 0..0) }
+    }
+
+    fun IntRange.toString(): String {
+        return if (this.first == this.last) {
+            this.first.toString()
+        } else {
+            "${this.first}-${this.last}"
+        }
+    }
+
+    fun IntRange.plus(range: IntRange): IntRange {
+        return IntRange(this.first + range.first, this.last + range.last)
     }
 }

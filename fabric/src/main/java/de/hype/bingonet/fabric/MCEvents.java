@@ -1,13 +1,11 @@
 package de.hype.bingonet.fabric;
 
 import de.hype.bingonet.client.common.chat.Chat;
-import de.hype.bingonet.client.common.chat.Message;
 import de.hype.bingonet.client.common.client.BingoNet;
 import de.hype.bingonet.client.common.client.updatelisteners.UpdateListenerManager;
 import de.hype.bingonet.client.common.config.constants.ClickableArmorStand;
 import de.hype.bingonet.client.common.mclibraries.EnvironmentCore;
 import de.hype.bingonet.fabric.mixins.mixinaccessinterfaces.IChestBlockEntityMixinAccess;
-import de.hype.bingonet.shared.constants.ChChestItem;
 import de.hype.bingonet.shared.constants.Islands;
 import de.hype.bingonet.shared.objects.Position;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -31,9 +29,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Set;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 public class MCEvents implements de.hype.bingonet.client.common.mclibraries.MCEvents {
     public Utils utils = (Utils) EnvironmentCore.utils;
@@ -71,41 +68,20 @@ public class MCEvents implements de.hype.bingonet.client.common.mclibraries.MCEv
                         UpdateListenerManager.chChestUpdateListener.addOpenedChest(new Position(blockPos.getX(), blockPos.getY(), blockPos.getZ()));
                         IChestBlockEntityMixinAccess access = (IChestBlockEntityMixinAccess) world.getBlockEntity(blockPos);
                         //is it open already? if so ignore cause not new
+                        if (access == null) return ActionResult.PASS;
                         boolean alreadyOpened = access.BingoNet$isOpen();
-                        //schedule to check after processing to allow detecting whether chest is now opened → just opened
-//                        BingoNet.executionService.schedule(() -> {
-//                            if (!(world.getBlockEntity(blockPos) instanceof ChestBlockEntity)) return;
-//                            if (!access.BingoNet$isOpen() || alreadyOpened) return;
-//                            BingoNet.executionService.schedule(() -> {
-//                                //Check whether it still exists → filter for the powder chest with unfortunate timing
-//                                if (!(world.getBlockEntity(blockPos) instanceof ChestBlockEntity)) return;
-//                                Set<ChChestItem> items = BingoNet.temporaryConfig.chestParts;
-//                                items.clear();
-//                                BingoNet.executionService.schedule(() -> {
-////                                    Chat.sendPrivateMessageToSelfDebug("Global Chest Detected");
-//                                    BingoNet.executionService.schedule(() -> {
-//                                        if (BingoNet.temporaryConfig.chestParts.isEmpty()) {
-////                                            Chat.sendPrivateMessageToSelfDebug("Global Chest " + blockPos.toShortString() + ":" + " Nothing of value");
-//                                            return;
-//                                        }
-//                                        Position pos = new Position(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-//                                        Chat.sendPrivateMessageToSelfText(Message.tellraw("{\"text\":\"Global Chest Found ($coords): $items (Click here to announce)\",\"color\":\"gold\",\"clickEvent\":{\"action\":\"suggest_command\",\"value\":\"/chchest \\\"$items\\\" $coords \\\"/msg $username bb:party me\\\" Ⓐ\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":[{\"text\":\"You remain responsible. The detection is not flawless and can be wrong\",\"color\":\"dark_red\"}]}}".replace("$coords", pos.toString()).replace("$username", BingoNet.generalConfig.getUsername()).replace("$items", String.join("2", items.stream().map(ChChestItem::getDisplayName).collect(Collectors.joining(";"))))));
-//                                    }, 2, TimeUnit.SECONDS);
-//                                }, 2, TimeUnit.SECONDS);
-//                            }, 1, TimeUnit.SECONDS);
-//                        }, 1, TimeUnit.SECONDS);
                         BingoNet.executionService.schedule(() -> {
                             if (!(world.getBlockEntity(blockPos) instanceof ChestBlockEntity)) return;
                             if (!access.BingoNet$isOpen() || alreadyOpened) return;
                             BingoNet.executionService.schedule(() -> {
                                 //Check whether it still exists → filter for the powder chest with unfortunate timing
                                 if (!(world.getBlockEntity(blockPos) instanceof ChestBlockEntity)) return;
-                                BingoNet.executionService.schedule(() -> {
-                                    if (BingoNet.developerConfig.devMode) {
+                                var newPos = new Position(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+                                if (BingoNet.developerConfig.devMode) {
+                                    if (!Objects.equals(BingoNet.temporaryConfig.lastGlobalChchestCoords, newPos))
                                         Chat.sendPrivateMessageToSelfDebug("Set the Global Chest Blockpos too %s".formatted(blockPos.toString()));
-                                    }
-                                    BingoNet.temporaryConfig.lastGlobalChchestCoords = new Position(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-                                }, 2, TimeUnit.SECONDS);
+                                }
+                                BingoNet.temporaryConfig.lastGlobalChchestCoords = newPos;
                             }, 1, TimeUnit.SECONDS);
                         }, 1, TimeUnit.SECONDS);
 
@@ -124,10 +100,10 @@ public class MCEvents implements de.hype.bingonet.client.common.mclibraries.MCEv
      * @param hand
      * @param entity
      * @param hitResult
-     * @param use whether it is a punch or an use on the entity. if true it is an right click (use)
+     * @param use       whether it is a punch or an use on the entity. if true it is an right click (use)
      */
     public void onArmorstandInteraction(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult hitResult, boolean use) {
-        ModInitialiser.tutorialManager.clickedEntity(entity,use);
+        ModInitialiser.tutorialManager.clickedEntity(entity, use);
         if (entity instanceof ArmorStandEntity) {
             ((ArmorStandEntity) entity).getArmorItems().forEach(itemStack -> {
                 if (itemStack.getItem() == Items.PLAYER_HEAD) {

@@ -181,7 +181,7 @@ public class BingoBrewersPackets {
     }
 
     public static class sendCHItems {
-        public ArrayList<CHChestItem> items = new ArrayList<>();
+        public List<CHChestItem> items = new ArrayList<>();
         public int x;
         public int y;
         public int z;
