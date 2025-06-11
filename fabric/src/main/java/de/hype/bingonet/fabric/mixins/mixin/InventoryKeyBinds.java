@@ -11,6 +11,7 @@ import de.hype.bingonet.shared.compilation.sbenums.NeuRepoManager;
 import de.hype.bingonet.shared.compilation.sbenums.minions.MinionData;
 import de.hype.bingonet.shared.compilation.sbenums.minions.MinionRepoManager;
 import de.hype.bingonet.shared.constants.Collections;
+import io.github.moulberry.repo.data.NEURecipe;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -116,10 +117,13 @@ public abstract class InventoryKeyBinds<T extends ScreenHandler> extends Screen 
                         BingoNet.executionService.execute(() -> {
                             for (List<@NotNull MinionData> value : MinionRepoManager.INSTANCE.getTypeMappedMinions().values()) {
                                 var minionItem = NeuRepoManager.INSTANCE.getItems().get(value.getFirst().getItemId());
-                                var result = NeuExtensionUtilsKt.groupByItemId(minionItem.getRecipes().getFirst());
-                                if (result.keySet().stream().anyMatch(it -> it.getSkyblockItemId().equals(id))) {
-                                    BingoNet.sender.addSendTask("/viewrecipe %s".formatted(minionItem.getSkyblockItemId().replace("-", ":")), 0);
-                                    return;
+                                var recipes = minionItem.getRecipes();
+                                for (NEURecipe recipe : recipes) {
+                                    var result = NeuExtensionUtilsKt.groupByItemId(recipe);
+                                    if (result.keySet().stream().anyMatch(it -> it.getSkyblockItemId().equals(id))) {
+                                        BingoNet.sender.addSendTask("/viewrecipe %s".formatted(minionItem.getSkyblockItemId().replace("-", ":")), 0);
+                                        return;
+                                    }
                                 }
                             }
                         });

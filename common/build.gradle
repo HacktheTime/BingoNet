@@ -85,3 +85,6 @@ gradle.projectsEvaluated {
     tasks.matching { it.name.toLowerCase().contains('kapt') }.configureEach { it.enabled = false }
 }
 
+
+
+

@@ -41,6 +41,7 @@ dependencies {
     modImplementation libs.modern.fabric.api.get()
     //Dev Env
     modRuntimeOnly(libs.modern.devauth)
+    implementation(project(":shared-annotation-processor")) // Shared Annotation Processor
 
     //Dependencies
     //Basic Dependencies

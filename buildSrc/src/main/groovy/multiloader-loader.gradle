@@ -42,3 +42,16 @@ tasks.named("sourcesJar", Jar) {
     dependsOn(configurations.commonResources)
     from(configurations.commonResources)
 }
+
+jar {
+    from {
+        configurations
+                .runtimeClasspath
+                .collect {
+                    println(it)
+                    if (it.name.contains("shared-annotation-processor")) {
+                        zipTree(it)
+                    }
+                }
+    }
+}

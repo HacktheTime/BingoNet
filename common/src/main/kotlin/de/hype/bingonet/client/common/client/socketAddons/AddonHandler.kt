@@ -150,7 +150,7 @@ class AddonHandler(var client: Socket) : Runnable {
     }
 
     fun onGoToIslandAddonPacket(packet: GoToIslandAddonPacket) {
-        require(!(packet.island != null && packet.island.warpArgument == null)) { "Island has no warp command." }
+        require(packet.island.warpArgument != null) { "Island has no warp command." }
         var dataStorage: BBDataStorage? = null
         var firstTry = true
         while (!EnvironmentCore.utils.isInGame() || dataStorage == null) {

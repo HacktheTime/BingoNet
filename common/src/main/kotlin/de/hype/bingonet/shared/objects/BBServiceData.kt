@@ -24,8 +24,6 @@ open class BBServiceData(
 
     open var participants: MutableList<Participant> = ArrayList<Participant>()
 
-    @JvmField
-    var queue: MutableList<Participant> = ArrayList<Participant>()
     protected lateinit var dcMessageID: String
 
     @JvmField
@@ -77,14 +75,7 @@ open class BBServiceData(
             return user.hashCode()
         }
 
-        val discordParticipantString: String
-            get() {
-                var string = user.mcusername
-                if (price == 0) string = "**$string**"
-                if (priority) string = "__${string}__"
-                if (autoRequeue) string = "*$string*"
-                return string
-            }
+
     }
 
     class Helper {

@@ -85,14 +85,6 @@ public class FirstBootPrompt extends Screen {
             titleWidget.setY(padding);
 
             ScrollableTextWidget textWidget = new ScrollableTextWidget((width - textWidgetWidth) / 2, padding * 2 + titleWidget.getHeight(), textWidgetWidth, textWidgetHeight, Text.literal(notice), textRenderer);
-            CheckboxWidget useBBIntegration = CheckboxWidget.builder(Text.literal("Do you want to use our Bingo Brewers Integration?"), MinecraftClient.getInstance().textRenderer).checked(false).tooltip(
-                    Tooltip.of(Text.literal("The Bingo Brewers Integration makes Bingo Net connect to indigo_polecat's Bingo Brewer Mod Server. (bingobrewers.com). It is not subject to our own Privacy. We are not responsible for possible Network Bans."))
-            ).callback((checkbox, checked) -> {
-                BingoNet.generalConfig.useBingoBrewersIntegration = checked;
-                BingoNet.generalConfig.save();
-            }).build();
-            useBBIntegration.onPress();
-            useBBIntegration.setDimensionsAndPosition((width - textWidgetWidth) / 2, padding + titleWidget.getHeight(), textWidgetWidth, buttonHeight);
             //Color Coding against using it knowingly.
             ButtonWidget openDiscord = ButtonWidget.builder(Text.literal("§cOpen Discord in Browser"), (b) -> this.openDiscord())
                     .dimensions((width - buttonWidth) / 2, padding * 3 + titleWidget.getHeight() + textWidgetHeight, buttonWidth, buttonHeight)
@@ -109,15 +101,23 @@ public class FirstBootPrompt extends Screen {
             ButtonWidget gitHubButton = ButtonWidget.builder(Text.literal("§aOpen Github"), (b) -> this.openGithub())
                     .dimensions((width - buttonWidth) / 2, padding * 7 + titleWidget.getHeight() + textWidgetHeight + buttonHeight * 4, buttonWidth, buttonHeight)
                     .build();
+            CheckboxWidget useBBIntegration = CheckboxWidget.builder(Text.literal("Do you want to use our Bingo Brewers Integration?"), MinecraftClient.getInstance().textRenderer).checked(false).tooltip(
+                    Tooltip.of(Text.literal("The Bingo Brewers Integration makes Bingo Net connect to indigo_polecat's Bingo Brewer Mod Server. (bingobrewers.com). It is not subject to our own Privacy. We are not responsible for possible Network Bans."))
+            ).callback((checkbox, checked) -> {
+                BingoNet.generalConfig.useBingoBrewersIntegration = checked;
+                BingoNet.generalConfig.save();
+            }).build();
+            useBBIntegration.onPress();
+            useBBIntegration.setDimensionsAndPosition((width - textWidgetWidth) / 2, padding * 8 + titleWidget.getHeight() + buttonHeight * 5, textWidgetWidth, buttonHeight);
 
             addDrawableChild(titleWidget);
             addDrawableChild(textWidget);
-            addDrawableChild(useBBIntegration);
             addDrawableChild(openDiscord);
             addDrawableChild(gitHubButton);
             addDrawableChild(openPrivacyPolicyInBrowser);
             addDrawableChild(connectToNetwork);
             addDrawableChild(modSelfRemove);
+            addDrawableChild(useBBIntegration);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -3,7 +3,6 @@ package de.hype.bingonet.shared.objects.minions
 import de.hype.bingonet.shared.compilation.sbenums.minions.*
 import io.github.moulberry.repo.data.NEUItem
 import kotlin.math.ceil
-import kotlin.math.min
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 

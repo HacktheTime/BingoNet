@@ -61,6 +61,16 @@ jar {
         rename { "${it}_${mod_name}" }
     }
 
+    from {
+        configurations
+                .runtimeClasspath
+                .filter { it.name.contains("shared-annotation-processor") }
+                .collect {
+                    zipTree(it)
+                }
+        setDuplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    }
+
     manifest {
         attributes([
                 'Specification-Title'   : mod_name,
