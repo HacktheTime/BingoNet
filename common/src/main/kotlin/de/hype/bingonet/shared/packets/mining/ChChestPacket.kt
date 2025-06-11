@@ -2,7 +2,6 @@ package de.hype.bingonet.shared.packets.mining
 
 import de.hype.bingonet.environment.packetconfig.AbstractPacket
 import de.hype.bingonet.shared.objects.ChChestData
-import de.hype.bingonet.shared.objects.ChestLobbyData
 import java.time.Instant
 
 /**
