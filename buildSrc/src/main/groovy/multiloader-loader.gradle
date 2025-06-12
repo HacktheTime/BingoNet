@@ -48,7 +48,6 @@ jar {
         configurations
                 .runtimeClasspath
                 .collect {
-                    println(it)
                     if (it.name.contains("shared-annotation-processor")) {
                         zipTree(it)
                     }

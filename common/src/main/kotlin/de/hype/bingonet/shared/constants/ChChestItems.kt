@@ -1,5 +1,8 @@
 package de.hype.bingonet.shared.constants
 
+import java.lang.reflect.Field
+import java.lang.reflect.Modifier
+
 /**
  * Enumeration representing various ChChest items in the game.
  * These constants define specific ChChest items that players can obtain.
@@ -25,31 +28,125 @@ package de.hype.bingonet.shared.constants
  * Make sure too use the EXACT display name!
 </pre> *
  */
-enum class ValueableChChestItem(val displayName: String, val iconPath: String?) {
-    PrehistoricEgg("Prehistoric Egg", "prehistoric_egg"),
+object ChChestItems {
+    @JvmField
+    val PrehistoricEgg: ChChestItem = ChChestItem("Prehistoric Egg", "prehistoric_egg")
 
-    Pickonimbus2000("Pickonimbus 2000", "pickonimbus"),
+    @JvmField
+    val Pickonimbus2000: ChChestItem = ChChestItem("Pickonimbus 2000", "pickonimbus")
 
-    ControlSwitch("Control Switch", "control_switch"),
+    @JvmField
+    val ControlSwitch: ChChestItem = ChChestItem("Control Switch", "control_switch")
 
-    ElectronTransmitter("Electron Transmitter", "electron_transmitter"),
+    @JvmField
+    val ElectronTransmitter: ChChestItem = ChChestItem("Electron Transmitter", "electron_transmitter")
 
-    FTX3070("FTX 3070", "ftx_3070"),
+    @JvmField
+    val FTX3070: ChChestItem = ChChestItem("FTX 3070", "ftx_3070")
 
-    RobotronReflector("Robotron Reflector", "robotron_reflector"),
+    @JvmField
+    val RobotronReflector: ChChestItem = ChChestItem("Robotron Reflector", "robotron_reflector")
 
-    SuperliteMotor("Superlite Motor", "superlite_motor"),
+    @JvmField
+    val SuperliteMotor: ChChestItem = ChChestItem("Superlite Motor", "superlite_motor")
 
-    SyntheticHeart("Synthetic Heart", "synthetic_heart"),
+    @JvmField
+    val SyntheticHeart: ChChestItem = ChChestItem("Synthetic Heart", "synthetic_heart")
 
-    FlawlessGemstone("Flawless Gemstone", "flawless_gemstone"),
-    GEMSTONE_POWDER("1,200-4,800 ${Formatting.LIGHT_PURPLE}Gemstone Powder", "legendary_gemstone_powder"),
-    MITHRIL_POWDER("1,200-4,800 ${Formatting.GREEN}Mithril Powder", "legendary_mithril_powder");
+    @JvmField
+    val FlawlessGemstone: ChChestItem = ChChestItem("Flawless Gemstone", "flawless_gemstone")
+    val GEMSTONE_POWDER: ChChestItem =
+        ChChestItem("1,200-4,800 ${Formatting.LIGHT_PURPLE}Gemstone Powder", "legendary_gemstone_powder")
+    val MITHRIL_POWDER: ChChestItem =
+        ChChestItem("1,200-4,800 ${Formatting.GREEN}Mithril Powder", "legendary_mithril_powder")
 
-    companion object {
-        fun get(displayName: String): ValueableChChestItem {
-            return entries.firstOrNull { it.displayName == displayName }
-                ?: throw IllegalArgumentException("No ValueableChChestItem found with display name: $displayName")
+    @JvmStatic
+    val allItems: MutableList<ChChestItem> = ArrayList()
+
+    // Automatically populate predefined items using reflection
+    init {
+        val fields = ChChestItems::class.java.declaredFields
+        for (field in fields) {
+            if (field.type == ChChestItem::class.java && isPublicStaticFinal(field)) {
+                try {
+                    allItems.add((field.get(null) as ChChestItem))
+                } catch (e: IllegalAccessException) {
+                    // Handle exception
+                }
+            }
         }
     }
+
+    fun getItem(displayName: String): ChChestItem {
+        val existingItem = getPredefinedItem(displayName)
+
+        if (existingItem != null) {
+            return existingItem
+        }
+
+        val customItem = ChChestItem(displayName, true)
+        return customItem
+    }
+
+    @JvmStatic
+    fun getItems(itemInput: Array<String>): MutableList<ChChestItem> {
+        val items = listOf(*itemInput)
+        val allItems: MutableList<ChChestItem> = allItems
+        val foundItems: MutableList<ChChestItem> = ArrayList()
+        for (item in items) {
+            var foundItem: ChChestItem? = null
+            for (allItem in allItems) {
+                if (allItem.displayName == item) {
+                    foundItem = allItem
+                    break
+                }
+            }
+            requireNotNull(foundItem) { "Unknown Item: $item" }
+            foundItems.add(foundItem)
+        }
+        return foundItems
+    }
+
+    @JvmStatic
+    fun getPredefinedItem(displayName: String): ChChestItem? {
+        for (item in allItems) {
+            var amount = 1
+            val countString = displayName.replace("\\D".toRegex(), "")
+            if (!countString.isEmpty()) amount = countString.toInt()
+            if (item.isPowder) {
+                if (displayName.matches(".*Powder".toRegex())) {
+                    if (amount >= 1200) {
+                        return item
+                    }
+                } else continue
+            }
+
+            if (item == FlawlessGemstone) {
+                if (displayName.matches(".*Flawless.*Gemstone.*".toRegex())) return item
+            } else if (item.displayName.contains(displayName)) {
+                return item
+            }
+        }
+        return null
+    }
+
+    // Utility method to check if a field is public, static, and final
+    private fun isPublicStaticFinal(field: Field): Boolean {
+        return Modifier.isPublic(field.modifiers) &&
+                Modifier.isStatic(field.modifiers) &&
+                Modifier.isFinal(field.modifiers)
+    }
+
+    @JvmStatic
+    fun createCustomItem(displayName: String): ChChestItem {
+        val customItem = ChChestItem(displayName, true)
+        allItems.add(customItem)
+        return customItem
+    }
+
+    @JvmStatic
+    val allItemNames: MutableList<String> by lazy {
+        allItems.map(ChChestItem::displayName).toMutableList()
+    }
+    //very fancy way to convert a list to a list of values from the previous list
 }
