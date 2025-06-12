@@ -23,14 +23,12 @@ import java.util.stream.Collectors;
 
 public class ChChestUpdateListener extends UpdateListener {
     public ChestLobbyData lobby;
-    public boolean isHoster = false;
     List<Position> chestsOpened = new ArrayList<>();
     Map<Position, Waypoints> waypoints = new HashMap<>();
 
     public ChChestUpdateListener(ChestLobbyData lobby) {
         if (lobby == null) return;
         this.lobby = lobby;
-        isHoster = (lobby.getContactMan().equalsIgnoreCase(BingoNet.generalConfig.getUsername()));
     }
 
     public void updateLobby(ChestLobbyData data) {

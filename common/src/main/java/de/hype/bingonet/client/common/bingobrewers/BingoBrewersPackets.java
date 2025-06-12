@@ -210,7 +210,12 @@ public class BingoBrewersPackets {
 
         @Override
         public void execute(receiveCHItems packet, Client client) {
+            if (BingoNet.dataStorage.serverId.equals(packet.server)) {
+                var conf = BingoNet.temporaryConfig;
+                for (ChestInfo chestInfo : chestMap) {
 
+                }
+            }
         }
     }
 
