@@ -2,6 +2,9 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/fabric/run/config/BBsentials/repos/neu" vcs="" />
+    <mapping directory="$PROJECT_DIR$/fabric/run/config/BingoNet/repos/neu" vcs="" />
+    <mapping directory="$PROJECT_DIR$/fabric/run/neu-repo" vcs="" />
     <mapping directory="$PROJECT_DIR$/neu-repo" vcs="" />
   </component>
 </project>
