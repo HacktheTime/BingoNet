@@ -1,133 +1,151 @@
-package de.hype.bingonet.client.common.client.updatelisteners;
+package de.hype.bingonet.client.common.client.updatelisteners
 
-import de.hype.bingonet.client.common.chat.Chat;
-import de.hype.bingonet.client.common.chat.Message;
-import de.hype.bingonet.client.common.client.BingoNet;
-import de.hype.bingonet.client.common.client.objects.ServerSwitchTask;
-import de.hype.bingonet.client.common.communication.BBsentialConnection;
-import de.hype.bingonet.client.common.config.PartyManager;
-import de.hype.bingonet.client.common.mclibraries.EnvironmentCore;
-import de.hype.bingonet.shared.constants.ChChestItem;
-import de.hype.bingonet.shared.constants.ChChestItems;
-import de.hype.bingonet.shared.constants.StatusConstants;
-import de.hype.bingonet.shared.objects.ChestLobbyData;
-import org.apache.commons.text.StringEscapeUtils;
+import de.hype.bingonet.client.common.bingobrewers.BingoBrewersPackets
+import de.hype.bingonet.client.common.client.BingoNet
+import de.hype.bingonet.client.common.client.objects.ServerSwitchTask
+import de.hype.bingonet.client.common.mclibraries.EnvironmentCore
+import de.hype.bingonet.shared.constants.Islands
+import de.hype.bingonet.shared.packets.mining.SubscribeToChServer
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+object UpdateListenerManager {
+    var connection: de.hype.bingonet.client.common.communication.BBsentialConnection? = null
 
-public class UpdateListenerManager {
-    public static BBsentialConnection connection;
-    public static SplashStatusUpdateListener splashStatusUpdateListener;
-    public static ChChestUpdateListener chChestUpdateListener;
-    public static Map<Integer, ChestLobbyData> lobbies;
+    @JvmField
+    var splashStatusUpdateListener: SplashStatusUpdateListener? = null
 
-    public static void init() {
-        splashStatusUpdateListener = new SplashStatusUpdateListener(null);
-        lobbies = new HashMap<>();
-        chChestUpdateListener = new ChChestUpdateListener(null);
-        ServerSwitchTask.onServerJoinTask(UpdateListenerManager::permanentCheck, true);
+    @JvmField
+    var chChestUpdateListener: ChChestUpdateListener? = null
 
+    @JvmStatic
+    fun init() {
+        splashStatusUpdateListener = SplashStatusUpdateListener(null)
+        chChestUpdateListener = ChChestUpdateListener()
     }
 
-    public static void permanentCheck() {
-        String serverId = EnvironmentCore.utils.getServerId();
-        for (Map.Entry<Integer, ChestLobbyData> entry : lobbies.entrySet()) {
-            if (!entry.getValue().serverId.equals(serverId)) continue;
-            if (!entry.getValue().getContactMan().equals(BingoNet.generalConfig.getUsername())) continue;
-            chChestUpdateListener = new ChChestUpdateListener(entry.getValue());
-            chChestUpdateListener.sendUpdatePacket();
-            chChestUpdateListener.run();
-        }
-    }
-
-    public static void onChLobbyDataReceived(ChestLobbyData data) {
-        ChestLobbyData oldData = lobbies.get(data.lobbyId);
+    @JvmStatic
+    fun onChLobbyDataReceived(data: de.hype.bingonet.shared.packets.mining.ChestLobbyUpdatePacket) {
+        val oldData: ChestLobbyData? = lobbies.get(data.lobbyId)
         if (oldData == null) {
-            if (data.getContactMan().equals(BingoNet.generalConfig.getUsername())) {
-                if (!BingoNet.partyConfig.allowBBinviteMe && data.bbcommand.trim().equalsIgnoreCase("/msg " + BingoNet.generalConfig.getUsername() + " bb:party me")) {
-                    Chat.sendPrivateMessageToSelfImportantInfo("Enabled bb:party invites temporarily. Will be disabled on Server swap!");
-                    BingoNet.partyConfig.allowBBinviteMe = true;
-                    ServerSwitchTask.onServerLeaveTask(() -> BingoNet.partyConfig.allowBBinviteMe = false);
-                } else if (data.bbcommand.trim().equalsIgnoreCase("/p join " + BingoNet.generalConfig.getUsername())) {
-                    if (!PartyManager.isInParty()) BingoNet.sender.addImmediateSendTask("/p leave");
-                    BingoNet.sender.addHiddenSendTask("/stream open 23", 1);
-                    BingoNet.sender.addHiddenSendTask("/pl", 2);
-                    Chat.sendPrivateMessageToSelfImportantInfo("Opened Stream Party for you since you announced chchest items");
+            if (data.getContactMan()
+                    .equals(de.hype.bingonet.client.common.client.BingoNet.generalConfig.username)
+            ) {
+                if (!de.hype.bingonet.client.common.client.BingoNet.partyConfig.allowBBinviteMe && data.bbcommand.trim()
+                        .equalsIgnoreCase("/msg " + de.hype.bingonet.client.common.client.BingoNet.generalConfig.username + " bb:party me")
+                ) {
+                    de.hype.bingonet.client.common.chat.Chat.sendPrivateMessageToSelfImportantInfo("Enabled bb:party invites temporarily. Will be disabled on Server swap!")
+                    de.hype.bingonet.client.common.client.BingoNet.partyConfig.allowBBinviteMe = true
+                    de.hype.bingonet.client.common.client.objects.ServerSwitchTask.onServerLeaveTask(Runnable {
+                        de.hype.bingonet.client.common.client.BingoNet.partyConfig.allowBBinviteMe = false
+                    })
+                } else if (data.bbcommand.trim()
+                        .equalsIgnoreCase("/p join " + de.hype.bingonet.client.common.client.BingoNet.generalConfig.username)
+                ) {
+                    if (!de.hype.bingonet.client.common.config.PartyManager.isInParty()) de.hype.bingonet.client.common.client.BingoNet.sender.addImmediateSendTask(
+                        "/p leave"
+                    )
+                    de.hype.bingonet.client.common.client.BingoNet.sender.addHiddenSendTask("/stream open 23", 1.0)
+                    de.hype.bingonet.client.common.client.BingoNet.sender.addHiddenSendTask("/pl", 2.0)
+                    de.hype.bingonet.client.common.chat.Chat.sendPrivateMessageToSelfImportantInfo("Opened Stream Party for you since you announced chchest items")
                 }
             }
             if (data.getStatus().equalsIgnoreCase("Closed") || data.getStatus().equalsIgnoreCase("Left")) {
-                lobbies.remove(data);
-                return;
+                lobbies.remove(data)
+                return
             }
-            lobbies.put(data.lobbyId, data);
-            if (BBsentialConnection.isCommandSafe(data.bbcommand)) {
-                BingoNet.executionService.execute(UpdateListenerManager::permanentCheck);
-                if (showChChest(data.getChests().getFirst().items)) {
-                    String tellrawText = ("{\"text\":\"BB: @username found @item in a chest at (@coords). Click here to get a party invite @extramessage\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"@inviteCommand\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":[\"On clicking you will get invited to a party. Command executed: @inviteCommand\"]}}");
-                    tellrawText = tellrawText.replace("@username", StringEscapeUtils.escapeJson(data.getContactMan()));
-                    tellrawText = tellrawText.replace("@item", StringEscapeUtils.escapeJson(data.getChests().getFirst().items.stream()
-                            .map(ChChestItem::getDisplayName)
-                            .toList()
-                            .toString()));
-                    tellrawText = tellrawText.replace("@coords", StringEscapeUtils.escapeJson(data.getChests().getFirst().coords.toString()));
-                    tellrawText = tellrawText.replace("@inviteCommand", StringEscapeUtils.escapeJson(StringEscapeUtils.escapeJson(data.bbcommand)));
+            lobbies.put(data.lobbyId, data)
+            if (de.hype.bingonet.client.common.communication.BBsentialConnection.isCommandSafe(data.bbcommand)) {
+                de.hype.bingonet.client.common.client.BingoNet.executionService.execute(java.lang.Runnable { obj: UpdateListenerManager? -> permanentCheck() })
+                if (showChChest(data.chests.getFirst().items)) {
+                    var tellrawText =
+                        ("{\"text\":\"BB: @username found @item in a chest at (@coords). Click here to get a party invite @extramessage\",\"color\":\"green\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"@inviteCommand\"},\"hoverEvent\":{\"action\":\"show_text\",\"contents\":[\"On clicking you will get invited to a party. Command executed: @inviteCommand\"]}}")
+                    tellrawText = tellrawText.replace(
+                        "@username",
+                        org.apache.commons.text.StringEscapeUtils.escapeJson(data.getContactMan())
+                    )
+                    tellrawText = tellrawText.replace(
+                        "@item", org.apache.commons.text.StringEscapeUtils.escapeJson(
+                            data.chests.getFirst().items.stream()
+                                .map(de.hype.bingonet.shared.constants.ChChestItem::displayName)
+                                .toList()
+                                .toString()
+                        )
+                    )
+                    tellrawText = tellrawText.replace(
+                        "@coords",
+                        org.apache.commons.text.StringEscapeUtils.escapeJson(data.chests.getFirst().coords.toString())
+                    )
+                    tellrawText = tellrawText.replace(
+                        "@inviteCommand",
+                        org.apache.commons.text.StringEscapeUtils.escapeJson(
+                            org.apache.commons.text.StringEscapeUtils.escapeJson(
+                                data.bbcommand
+                            )
+                        )
+                    )
                     if (!(data.extraMessage == null || data.extraMessage.isEmpty())) {
-                        tellrawText = tellrawText.replace("@extramessage", " : " + StringEscapeUtils.escapeJson(data.extraMessage));
+                        tellrawText = tellrawText.replace(
+                            "@extramessage",
+                            " : " + org.apache.commons.text.StringEscapeUtils.escapeJson(data.extraMessage)
+                        )
                     }
-                    Chat.sendPrivateMessageToSelfText(Message.tellraw(tellrawText));
+                    de.hype.bingonet.client.common.chat.Chat.sendPrivateMessageToSelfText(
+                        de.hype.bingonet.client.common.chat.Message.tellraw(
+                            tellrawText
+                        )
+                    )
                 }
                 try {
-                    if (EnvironmentCore.utils.getServerId().equalsIgnoreCase(data.serverId)) {
-                        ServerSwitchTask.onServerLeaveTask(() -> {
-                            chChestUpdateListener.setStatus(StatusConstants.LEFT);
-                        }, false);
+                    if (de.hype.bingonet.client.common.mclibraries.EnvironmentCore.utils.getServerId()
+                            .equals(data.serverId, ignoreCase = true)
+                    ) {
+                        de.hype.bingonet.client.common.client.objects.ServerSwitchTask.onServerLeaveTask(Runnable {
+                            chChestUpdateListener!!.setStatus(
+                                de.hype.bingonet.shared.constants.StatusConstants.LEFT
+                            )
+                        }, false)
                     }
-                } catch (Exception ignored) {
+                } catch (ignored: java.lang.Exception) {
                 }
+            } else {
+                de.hype.bingonet.client.common.chat.Chat.sendPrivateMessageToSelfFatal("Potentially dangerous packet detected. Action Command: " + data.bbcommand)
             }
-            else {
-                Chat.sendPrivateMessageToSelfFatal("Potentially dangerous packet detected. Action Command: " + data.bbcommand);
-            }
-        }
-        else {
-            if (chChestUpdateListener.isInLobby.get()) {
-                chChestUpdateListener.updateLobby(data);
+        } else {
+            if (chChestUpdateListener!!.isInLobby.get()) {
+                chChestUpdateListener!!.updateLobby(
+                    data
+                )
             }
         }
     }
 
-    public static boolean showChChest(List<ChChestItem> items) {
-        if (BingoNet.chChestConfig.allChChestItem) return true;
-        for (ChChestItem item : items) {
-            if (BingoNet.chChestConfig.customChChestItem && item.isCustom()) return true;
-            if (BingoNet.chChestConfig.allRoboPart && item.isRoboPart()) return true;
-            if (BingoNet.chChestConfig.prehistoricEgg && item.equals(ChChestItems.PrehistoricEgg))
-                return true;
-            if (BingoNet.chChestConfig.pickonimbus2000 && item.equals(ChChestItems.Pickonimbus2000))
-                return true;
-            if (BingoNet.chChestConfig.controlSwitch && item.equals(ChChestItems.ControlSwitch)) return true;
-            if (BingoNet.chChestConfig.electronTransmitter && item.equals(ChChestItems.ElectronTransmitter))
-                return true;
-            if (BingoNet.chChestConfig.ftx3070 && item.equals(ChChestItems.FTX3070))
-                return true;
-            if (BingoNet.chChestConfig.robotronReflector && item.equals(ChChestItems.RobotronReflector))
-                return true;
-            if (BingoNet.chChestConfig.superliteMotor && item.equals(ChChestItems.SuperliteMotor))
-                return true;
-            if (BingoNet.chChestConfig.syntheticHeart && item.equals(ChChestItems.SyntheticHeart))
-                return true;
-            if (BingoNet.chChestConfig.flawlessGemstone && item.equals(ChChestItems.FlawlessGemstone))
-                return true;
+    fun showChChest(items: MutableList<de.hype.bingonet.shared.constants.ChChestItem>): Boolean {
+        if (de.hype.bingonet.client.common.client.BingoNet.chChestConfig.allChChestItem) return true
+        for (item in items) {
+            if (de.hype.bingonet.client.common.client.BingoNet.chChestConfig.customChChestItem && item.isCustom()) return true
+            if (de.hype.bingonet.client.common.client.BingoNet.chChestConfig.allRoboPart && item.isRoboPart()) return true
+            if (de.hype.bingonet.client.common.client.BingoNet.chChestConfig.prehistoricEgg && item == ChChestItems.PrehistoricEgg) return true
+            if (de.hype.bingonet.client.common.client.BingoNet.chChestConfig.pickonimbus2000 && item == ChChestItems.Pickonimbus2000) return true
+            if (de.hype.bingonet.client.common.client.BingoNet.chChestConfig.controlSwitch && item == ChChestItems.ControlSwitch) return true
+            if (de.hype.bingonet.client.common.client.BingoNet.chChestConfig.electronTransmitter && item == ChChestItems.ElectronTransmitter) return true
+            if (de.hype.bingonet.client.common.client.BingoNet.chChestConfig.ftx3070 && item == ChChestItems.FTX3070) return true
+            if (de.hype.bingonet.client.common.client.BingoNet.chChestConfig.robotronReflector && item == ChChestItems.RobotronReflector) return true
+            if (de.hype.bingonet.client.common.client.BingoNet.chChestConfig.superliteMotor && item == ChChestItems.SuperliteMotor) return true
+            if (de.hype.bingonet.client.common.client.BingoNet.chChestConfig.syntheticHeart && item == ChChestItems.SyntheticHeart) return true
+            if (de.hype.bingonet.client.common.client.BingoNet.chChestConfig.flawlessGemstone && item == ChChestItems.FlawlessGemstone) return true
         }
-        return false;
+        return false
     }
 
-    public static void resetListeners() {
-        if (splashStatusUpdateListener != null) splashStatusUpdateListener.isInLobby.set(false);
-        splashStatusUpdateListener = new SplashStatusUpdateListener(null);
-        if (chChestUpdateListener != null) chChestUpdateListener.isInLobby.set(false);
-        chChestUpdateListener = new ChChestUpdateListener(null);
+    fun resetListeners() {
+        if (splashStatusUpdateListener != null) splashStatusUpdateListener!!.isInLobby.set(
+            false
+        )
+        splashStatusUpdateListener =
+            SplashStatusUpdateListener(null)
+        if (chChestUpdateListener != null) chChestUpdateListener!!.isInLobby.set(
+            false
+        )
+        chChestUpdateListener =
+            ChChestUpdateListener(null)
     }
 }

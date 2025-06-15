@@ -8,7 +8,6 @@ import de.hype.bingonet.client.common.objects.Waypoints;
 import de.hype.bingonet.shared.constants.ChChestItem;
 import de.hype.bingonet.shared.constants.StatusConstants;
 import de.hype.bingonet.shared.objects.ChChestData;
-import de.hype.bingonet.shared.objects.ChestLobbyData;
 import de.hype.bingonet.shared.objects.Position;
 import de.hype.bingonet.shared.objects.RenderInformation;
 import de.hype.bingonet.shared.packets.mining.ChestLobbyUpdatePacket;
@@ -25,11 +24,6 @@ public class ChChestUpdateListener extends UpdateListener {
     public ChestLobbyData lobby;
     List<Position> chestsOpened = new ArrayList<>();
     Map<Position, Waypoints> waypoints = new HashMap<>();
-
-    public ChChestUpdateListener(ChestLobbyData lobby) {
-        if (lobby == null) return;
-        this.lobby = lobby;
-    }
 
     public void updateLobby(ChestLobbyData data) {
         lobby = data;

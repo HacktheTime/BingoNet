@@ -53,6 +53,7 @@ import kotlin.apply
 import kotlin.arrayOf
 import kotlin.let
 import kotlin.math.min
+import kotlin.requireNotNull
 
 class BBsentialConnection {
     var messageReceiverThread: Thread? = null
@@ -438,19 +439,7 @@ class BBsentialConnection {
                 Chat.sendCommand("/p leave")
             }
         } else {
-            val users = packet.users
-            val chunkSize = 5
-            var i = 0
-            while (i < users!!.size) {
-                val chunk = users.subList(i, min(users.size, i + chunkSize))
-                Chat.sendCommand(
-                    "/p " + packet.type.toString().lowercase(Locale.getDefault()) + " " + String.join(
-                        " ",
-                        chunk
-                    )
-                )
-                i += chunkSize
-            }
+            packet.preparePacketToReplyToThis()
         }
     }
 
@@ -645,46 +634,6 @@ class BBsentialConnection {
                 if (i == 0) EnvironmentCore.utils.systemExit(data.exitCodeOnCrash)
             }
         }
-    }
-
-    fun annonceChChest(
-        coords: Position,
-        items: MutableList<ChChestItem>,
-        command: kotlin.String,
-        extraMessage: kotlin.String?
-    ) {
-        if (UpdateListenerManager.chChestUpdateListener.currentlyInChLobby()) {
-            UpdateListenerManager.chChestUpdateListener.addChestAndUpdate(coords, items)
-            return
-        }
-        if (Instant.now().isAfter(EnvironmentCore.utils.getLobbyClosingTime())) {
-            Chat.sendPrivateMessageToSelfError("The Lobby is already Closed (Day Count too high) → No one can be warped in!")
-            return
-        }
-        if (!BingoNet.partyConfig.allowBBinviteMe && command.trim { it <= ' ' }
-                .equals("/msg " + BingoNet.generalConfig.getUsername() + " bb:party me", ignoreCase = true)) {
-            Chat.sendPrivateMessageToSelfImportantInfo("Enabled bb:party invites temporarily. Will be disabled on Server swap!")
-            BingoNet.partyConfig.allowBBinviteMe = true
-            ServerSwitchTask.onServerLeaveTask(Runnable { BingoNet.partyConfig.allowBBinviteMe = false })
-        } else if (command.trim { it <= ' ' }
-                .equals("/p join " + BingoNet.generalConfig.getUsername(), ignoreCase = true)) {
-            if (!PartyManager.isInParty()) BingoNet.sender.addImmediateSendTask("/p leave")
-            BingoNet.sender.addHiddenSendTask("/stream open 23", 1.0)
-            BingoNet.sender.addHiddenSendTask("/pl", 2.0)
-            Chat.sendPrivateMessageToSelfImportantInfo("Opened Stream Party for you since you announced chchest items")
-        }
-
-        BingoNet.connection.sendPacket(
-            ChChestPacket(
-                ChestLobbyData(
-                    mutableListOf(ChChestData(EnvironmentPacketConfig.selfUsername, coords, items)),
-                    EnvironmentCore.utils.getServerId(),
-                    command,
-                    extraMessage,
-                    StatusConstants.OPEN,
-                )
-            )
-        )
     }
 
     fun onRequestMinionDataPacket(packet: RequestMinionDataPacket) {

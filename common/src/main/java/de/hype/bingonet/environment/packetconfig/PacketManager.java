@@ -3,7 +3,9 @@ package de.hype.bingonet.environment.packetconfig;
 import de.hype.bingonet.client.common.client.SplashManager;
 import de.hype.bingonet.client.common.client.updatelisteners.UpdateListenerManager;
 import de.hype.bingonet.client.common.communication.BBsentialConnection;
+import de.hype.bingonet.client.common.config.PartyManager;
 import de.hype.bingonet.shared.packets.function.*;
+import de.hype.bingonet.shared.packets.mining.ChChestPacket;
 import de.hype.bingonet.shared.packets.mining.ChestLobbyUpdatePacket;
 import de.hype.bingonet.shared.packets.mining.MiningEventPacket;
 import de.hype.bingonet.shared.packets.network.*;
@@ -68,6 +70,8 @@ public class PacketManager {
         packets.add(new Packet<>(PlaySoundPacket.class, connection::onPlaySoundPacket));
         packets.add(new Packet<>(MinionDataResponse.RequestMinionDataPacket.class, connection::onRequestMinionDataPacket));
         packets.add(new Packet<>(MinionDataResponse.class, connection::dummy));
-        packets.add(new Packet<>(ChestLobbyUpdatePacket.class, ((packet) -> UpdateListenerManager.onChLobbyDataReceived(packet.lobby))));
+        packets.add(new Packet<>(RequestPartyStatePacket.class, PartyManager::onRequestPartyStatePacket));
+        packets.add(new Packet<>(ChChestPacket.class, (packet) -> UpdateListenerManager.onChChestDataReceived(packet.chest)));
+        packets.add(new Packet<>(ChestLobbyUpdatePacket.class, ((packet) -> UpdateListenerManager.onChLobbyDataReceived(packet))));
     }
 }

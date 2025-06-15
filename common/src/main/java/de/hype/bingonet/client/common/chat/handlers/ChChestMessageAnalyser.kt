@@ -36,7 +36,7 @@ class ChChestMessageAnalyser {
                 val coords = BingoNet.temporaryConfig.lastGlobalChchestCoords
                 val chest = ChChestData(coords, items)
                 val serverId = BingoNet.dataStorage.serverId
-                val bnPacket = ChChestPacket(chest, serverId, EnvironmentCore.utils.lobbyClosingTime)
+                val bnPacket = ChChestPacket(chest, serverId)
                 BingoNet.connection.sendPacket(bnPacket)
                 if (BingoNet.bingoBrewersIntegrationConfig.showChests) {
                     val packet = BingoBrewersPackets.sendCHItems()

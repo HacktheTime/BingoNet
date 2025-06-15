@@ -4,6 +4,7 @@ import de.hype.bingonet.client.common.chat.Chat;
 import de.hype.bingonet.client.common.client.BingoNet;
 import de.hype.bingonet.client.common.mclibraries.EnvironmentCore;
 import de.hype.bingonet.shared.objects.Message;
+import de.hype.bingonet.shared.packets.function.RequestPartyStatePacket;
 import net.hypixel.modapi.packet.impl.clientbound.ClientboundPartyInfoPacket;
 import org.apache.commons.text.StringEscapeUtils;
 
@@ -33,7 +34,7 @@ public class PartyManager {
         partyMembers = new ArrayList<>();
     }
 
-    private boolean allInvite = true;
+    private static boolean allInvite = true;
 
 
     public static boolean handleMessage(String messageUnformatted, String noRanks) {
@@ -274,8 +275,27 @@ public class PartyManager {
         return null;
     }
 
-    public boolean canInviteMembersToParty() {
+    public static boolean canInviteMembersToParty() {
         return isInParty && (isPartyLeader || isModerator || allInvite);
+    }
+
+    public static boolean allPartyPlayersInLobby() {
+        var currentLobbyPlayers = EnvironmentCore.utils.getPlayers();
+        return partyMembers.parallelStream().allMatch(currentLobbyPlayers::contains);
+    }
+
+    public static void onRequestPartyStatePacket(RequestPartyStatePacket requestPartyStatePacket) {
+        var general = BingoNet.partyConfig.allowServerPartyInvite;
+        var count = general ? partyMembers.size() : 0;
+        var response = new RequestPartyStatePacket.PartyStatePacket(
+                general,
+                general && isInParty,
+                !general || allPartyPlayersInLobby(),
+                count,
+                general && isPartyLeader,
+                general && canInviteMembersToParty()
+        );
+        BingoNet.connection.sendPacket(requestPartyStatePacket.preparePacketToReplyToThis(response));
     }
 
     public enum PartyFeatures {

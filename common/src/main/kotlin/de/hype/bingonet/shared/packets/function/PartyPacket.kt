@@ -13,4 +13,4 @@ class PartyPacket
  * @param type         Party Command Type [PartyConstants]
  * @param users        users is just a reference for what behind the type.
  * @param serverBypass true when server did verification for example when hosting bingo party.
- */(val type: PartyConstants, val users: MutableList<String>, val serverBypass: Boolean) : AbstractPacket(1, 1)
+ */(val type: PartyConstants, val users: List<String>, val serverBypass: Boolean) : AbstractPacket(1, 1)

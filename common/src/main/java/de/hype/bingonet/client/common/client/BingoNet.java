@@ -237,36 +237,6 @@ public class BingoNet {
                 }
             }
         }, true);
-        ServerSwitchTask.onServerJoinTask(() -> {
-            var serverId = BingoNet.dataStorage.serverId;
-            if (BingoNet.dataStorage.island == Islands.CRYSTAL_HOLLOWS) {
-                var packet = SubscribeToChServer(serverId, EnvironmentCore.utils.getLobbyClosingTime());
-                BingoNet.connection.sendPacket(packet);
-                BingoBrewersPackets.SubscribeToCHServer bbsub;
-                if (BingoNet.bingoBrewersIntegrationConfig.getShowChests()) {
-                    bbsub = new BingoBrewersPackets.SubscribeToCHServer();
-                    bbsub.unsubscribe = false;
-                    bbsub.server = serverId;
-                    bbsub.day = EnvironmentCore.utils.getLobbyDay();
-                    bingoBrewersClient.sendTCP(bbsub);
-                    BingoNet.bingoBrewersClient.sendTCP(bbsub);
-                } else {
-                    bbsub = null;
-                }
-
-                ServerSwitchTask.onServerLeaveTask(() -> {
-                    var unsubpacket = UnsubscribeFromChServer(serverId, EnvironmentCore.utils.getPlayers());
-                    BingoNet.connection.sendPacket(unsubpacket);
-                    if (bbsub != null) {
-                        bbsub.unsubscribe = true;
-                        //I'm not updating the day since I fear that my server leave task would send bad data since the
-                        // day is world based and my leave procs on new server join due too it being the only fabric
-                        // event. The Tablist Data gets updated slower, and so it is for the Hypixel API Location Packet.
-                        bingoBrewersClient.sendTCP(bbsub);
-                    }
-                }, false);
-            }
-        }, true);
 //        if (discordConfig.useRichPresence) {
 //            try {
 //                dcGameSDK = new GameSDKManager();
