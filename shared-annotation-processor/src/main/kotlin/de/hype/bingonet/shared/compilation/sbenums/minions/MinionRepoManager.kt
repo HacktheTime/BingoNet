@@ -79,7 +79,6 @@ object MinionRepoManager {
     }
 
     val minionTypes: MutableMap<String, MinionType> by lazy {
-        println(System.getProperties())
         val file = File(NeuRepoManager.LOCAL_PATH.toFile(), "constants/minions.json")
         val json = file.readText()
         val jsonObject = JsonParser.parseString(json).asJsonObject

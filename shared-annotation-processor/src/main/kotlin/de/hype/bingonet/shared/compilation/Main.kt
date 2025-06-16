@@ -13,9 +13,9 @@ object Main {
         var base = System.getProperty("user.dir")
         if (base.endsWith("/main")) {
             base = base.substringBefore("/main")
-        } else if (base.endsWith("/fabric")) {
+        } else if (base.endsWith("/fabric") || base.endsWith("/fabric/run")) {
             base = base.substringBefore("/fabric")
-        } else if (base.endsWith("/common")) {
+        } else if (base.endsWith("/common") || base.endsWith("/common/run")) {
             base = base.substringBefore("/common")
         }
         return@lazy File(base)

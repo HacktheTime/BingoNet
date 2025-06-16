@@ -63,7 +63,7 @@ interface Collections {
         ;
 
 
-        override val tierCount: IntArray = tiers
+        override val tierCount: IntArray = intArrayOf(*tiers)
     }
 
     enum class Mining(override val id: String, override val minionID: String?, vararg tiers: Int) : Collections {
@@ -168,7 +168,7 @@ interface Collections {
         Netherrack("NETHERRACK", null, 50, 250, 500, 1000, 5000),
         ;
 
-        override val tierCount: IntArray = tiers
+        override val tierCount: IntArray = intArrayOf(*tiers)
     }
 
     enum class Combat(override val id: String, override val minionID: String?, vararg tiers: Int) : Collections {
@@ -185,7 +185,7 @@ interface Collections {
         String("STRING", "SPIDER_GENERATOR_1", 50, 100, 250, 1000, 2500, 5000, 10000, 25000, 50000),
         ;
 
-        override val tierCount: IntArray = tiers
+        override val tierCount: IntArray = intArrayOf(*tiers)
     }
 
     enum class Foraging(override val id: String, override val minionID: String?, vararg tiers: Int) : Collections {
@@ -197,7 +197,7 @@ interface Collections {
         Dark_Oak_Wood("LOG_2:1", "DARK_OAK_GENERATOR_1", 50, 100, 250, 1000, 2000, 5000, 10000, 15000, 25000),
         ;
 
-        override val tierCount: IntArray = tiers
+        override val tierCount: IntArray = intArrayOf(*tiers)
     }
 
     enum class Fishing(override val id: String, override val minionID: String?, vararg tiers: Int) : Collections {
@@ -212,7 +212,7 @@ interface Collections {
         Clay("CLAY_BALL", "CLAY_GENERATOR_1", 50, 100, 250, 1000, 1500, 2500),
         Sponge("SPONGE", "FISHING_GENERATOR_1", 20, 40, 100, 200, 400, 800, 1500, 2500, 4000);
 
-        override val tierCount: IntArray = tiers
+        override val tierCount: IntArray = intArrayOf(*tiers)
 
     }
 
@@ -225,7 +225,7 @@ interface Collections {
         Half_Eaten_Carrot("HALF_EATEN_CARROT", 1, 400, 1000, 3500),
         ;
 
-        override val tierCount: IntArray = tiers
+        override val tierCount: IntArray = intArrayOf(*tiers)
 
         override val minionID: String? = null
     }
