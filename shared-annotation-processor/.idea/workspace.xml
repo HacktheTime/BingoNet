@@ -1,0 +1,1588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="23ba0405-35ec-4290-bbcd-93d0d96685a5" name="Changes" comment="updated first boot prompt text to include Server Swap." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/common">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/fabric">
+          <activation />
+        </task>
+        <projects_view>
+          <option name="groupModules" value="false" />
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="BingoNet" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="Kotlin Class" />
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="module-info" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$/fabric/run/config/BBsentials/repos/neu" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="0ptplaytimehelper" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="kotlin-rewrite" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;assignee&quot;: &quot;HacktheTime&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {}
+}</component>
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: [
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOKFU_TM5wdpI8&quot;,
+        &quot;number&quot;: 6
+      },
+      &quot;lastSeen&quot;: 1716555875326
+    },
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOKFU_TM5i5CRH&quot;,
+        &quot;number&quot;: 1
+      },
+      &quot;lastSeen&quot;: 1720977018247
+    },
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOKFU_TM5oSE1D&quot;,
+        &quot;number&quot;: 4
+      },
+      &quot;lastSeen&quot;: 1720977514715
+    }
+  ]
+}</component>
+  <component name="GitRewordedCommitMessages">
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="server side related change" />
+        <option name="rewordedMessage" value="server side related change and formatting fixes" />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="3a892b353595fd5b08be173f790bef43af54d3a0" />
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/HacktheTime/BBsentials.git&quot;,
+    &quot;accountId&quot;: &quot;75ff9c35-987c-4f15-a2a4-46046dc15ad2&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/.cache/JetBrains/IntelliJIdea2024.3/device-explorer/Google Pixel 6/_/storage/emulated/0/Android/data/net.kdt.pojavlaunch.debug/files/custom_instances/fabulously_optimized_6.5.0-beta.9_for_1.21.4_805706dee96291815a4f46bf8d079122c57eac09/logs/latest.log" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;3679a3e9&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2gawLVoERuckbyrHf65qDBXDDU3" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+    <option name="sortKey" value="BY_TIME_DESCENDING" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Fabric Client (:fabric) modified.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Fabric Client (:fabric).executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Fabric Client ALT (:fabric).executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Fabric Client Main (:fabric).executor&quot;: &quot;Debug&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Gradle.BBsentials [:buildSrc:build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BBsentials [:common:decompile].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BBsentials [build].executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.BBsentials [genSourcesWithCfr].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BBsentials [genSourcesWithFernFlower].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BBsentials [genSourcesWithVineflower].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BBsentials [genSources].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BBsentials:common [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BBsentials:common [javadocJar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BBsentials:fabric [:fabric:MinecraftItemIds.main()].executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.BBsentials:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.BBsentials:fabric [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BBsentials:fabric [genSourcesWithVineflower].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BBsentials:fabric [runClient].executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.BingoNet:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.BingoNet:fabric [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build BBsentials.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build BingoNet.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHELLCHECK.PATH&quot;: &quot;/home/spieler/.local/share/JetBrains/IntelliJIdea2025.1/Shell Script/shellcheck&quot;,
+    &quot;ScreenRecorder.SavePath&quot;: &quot;/home/spieler&quot;,
+    &quot;Shell Script.Reset before Pirsm Sync.executor&quot;: &quot;Run&quot;,
+    &quot;Shell Script.Sync to Prism.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/spieler/IdeaProjects/BingoNet/fabric/run/mods&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15625&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.33024335&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.kotlinCompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="de.hype.bbsentials.environment.packetconfig" />
+      <recent name="de.hype.bbsentials.server.objects.BBUser" />
+      <recent name="de.hype.bbsentials.shared.constants" />
+      <recent name="de.hype.bbsentials.shared.packets.addonpacket" />
+      <recent name="de.hype.bbsentials.fabric" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/fabric/run/mods" />
+      <recent name="$PROJECT_DIR$/common/src/main/resources" />
+      <recent name="$PROJECT_DIR$/common/src/main/resources/assets/bbsentials/textures/gui" />
+      <recent name="$PROJECT_DIR$/fabric/run/resourcepacks/Hypixel+ 0.19.5 for 1.20.2/assets" />
+      <recent name="$PROJECT_DIR$/fabric/run/resourcepacks/Hypixel+ 0.19.5 for 1.20.2/assets/bbsentials" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/fabric/run/mods" />
+      <recent name="$PROJECT_DIR$/fabric/run/resourcepacks/Hypixel+ 0.19.5 for 1.20.2/assets/bbsentials/textures" />
+      <recent name="$PROJECT_DIR$/fabric/run/resourcepacks/Hypixel+ 0.19.5 for 1.20.2/assets/bbsentials" />
+      <recent name="$PROJECT_DIR$/fabric/run/resourcepacks/Hypixel+ 0.19.5 for 1.20.2/assets" />
+      <recent name="$PROJECT_DIR$/common/src/main/resources/assets/bbsentials/textures" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="de.hype.bbsentials.fabric.mixins.mixinaccessinterfaces" />
+      <recent name="de.hype.bbsentials.fabric.mixins.mixin" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="de.hype.bingonet.shared" />
+      <recent name="de.hype.bingonet.client.common.chat" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Fabric Client (:fabric) modified">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="IdeaProjects.BBsentials.fabric.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="IdeaProjects.BBsentials.fabric.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="IdeaProjects.BBsentials.fabric.main" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="IdeaProjects.BBsentials.fabric.main" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="BBsentials [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BBsentials [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BBsentials [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BBsentials [genSourcesWithVineflower]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="genSourcesWithVineflower" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BBsentials [genSourcesWithVineflower]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="genSourcesWithVineflower" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BBsentials [genSourcesWithVineflower]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="genSourcesWithVineflower" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BBsentials [genSources]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="genSources" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BBsentials [genSources]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="genSources" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BBsentials [genSources]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="genSources" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BBsentials:fabric [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fabric" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--stacktrace" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BBsentials:fabric [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fabric" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--stacktrace" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BBsentials:fabric [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fabric" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--stacktrace" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BingoNet:fabric [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fabric" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BingoNet:fabric [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fabric" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="BingoNet:fabric [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fabric" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="IdeaProjects.BBsentials.fabric.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="IdeaProjects.BBsentials.fabric.main" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Reset before Pirsm Sync" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="bash -c 'rm $USER_HOME$/.var/app/org.prismlauncher.PrismLauncher/data/PrismLauncher/instances/Intelij\ Coding/.minecraft/mods/*bbsentials*' bash -c '$PROJECT_DIR$/fabric/build/libs/bbsentials*'" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="false" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="Reset before Pirsm Sync" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="bash -c 'rm $USER_HOME$/.var/app/org.prismlauncher.PrismLauncher/data/PrismLauncher/instances/Intelij\ Coding/.minecraft/mods/*bbsentials*' bash -c '$PROJECT_DIR$/fabric/build/libs/bbsentials*'" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="false" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="Reset before Pirsm Sync" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="bash -c 'rm $USER_HOME$/.var/app/org.prismlauncher.PrismLauncher/data/PrismLauncher/instances/Intelij\ Coding/.minecraft/mods/*bbsentials*' bash -c '$PROJECT_DIR$/fabric/build/libs/bbsentials*'" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="false" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="Sync to Prism" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$USER_HOME$/myskripts/minecraft scripts/sync-mod with multi-mc.sh" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2">
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="Reset before Pirsm Sync" run_configuration_type="ShConfigurationType" />
+        <option name="Gradle.BeforeRunTask" enabled="true" tasks="build" externalProjectPath="$PROJECT_DIR$/fabric" vmOptions="" scriptParameters="" />
+      </method>
+    </configuration>
+    <configuration name="Sync to Prism" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$USER_HOME$/myskripts/minecraft scripts/sync-mod with multi-mc.sh" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2">
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="Reset before Pirsm Sync" run_configuration_type="ShConfigurationType" />
+        <option name="Gradle.BeforeRunTask" enabled="true" tasks="build" externalProjectPath="$PROJECT_DIR$/fabric" vmOptions="" scriptParameters="" />
+      </method>
+    </configuration>
+    <configuration name="Sync to Prism" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$USER_HOME$/myskripts/minecraft scripts/sync-mod with multi-mc.sh" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2">
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="Reset before Pirsm Sync" run_configuration_type="ShConfigurationType" />
+        <option name="Gradle.BeforeRunTask" enabled="true" tasks="build" externalProjectPath="$PROJECT_DIR$/fabric" vmOptions="" scriptParameters="" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Fabric Client (:fabric)" />
+      <item itemvalue="Application.Fabric Server (:fabric)" />
+      <item itemvalue="Application.Fabric Client (:fabric) modified" />
+      <item itemvalue="Gradle.BingoNet:fabric [clean]" />
+      <item itemvalue="Gradle.BBsentials [build]" />
+      <item itemvalue="Gradle.BBsentials:fabric [build]" />
+      <item itemvalue="Gradle.BBsentials [genSourcesWithVineflower]" />
+      <item itemvalue="Gradle.BBsentials [genSources]" />
+      <item itemvalue="Shell Script.Sync to Prism" />
+      <item itemvalue="Shell Script.Reset before Pirsm Sync" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.BBsentials [genSources]" />
+        <item itemvalue="Gradle.BBsentials [genSourcesWithVineflower]" />
+        <item itemvalue="Gradle.BBsentials:fabric [build]" />
+        <item itemvalue="Gradle.BBsentials [build]" />
+        <item itemvalue="Gradle.BingoNet:fabric [clean]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26094.121" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-IU-251.26094.121" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="23ba0405-35ec-4290-bbcd-93d0d96685a5" name="Changes" comment="" />
+      <created>1715948941841</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715948941841</updated>
+      <workItem from="1727419104013" duration="1000" />
+      <workItem from="1727419356524" duration="3603000" />
+      <workItem from="1727442105433" duration="2226000" />
+      <workItem from="1727446357442" duration="10331000" />
+      <workItem from="1727517086084" duration="5165000" />
+      <workItem from="1727689533559" duration="5445000" />
+      <workItem from="1727754202188" duration="449000" />
+      <workItem from="1727798035876" duration="1959000" />
+      <workItem from="1727865442799" duration="1891000" />
+      <workItem from="1727935907493" duration="18530000" />
+      <workItem from="1728018326356" duration="5692000" />
+      <workItem from="1728120326376" duration="6120000" />
+      <workItem from="1728201041193" duration="3983000" />
+      <workItem from="1728299855079" duration="3279000" />
+      <workItem from="1728485457304" duration="79000" />
+      <workItem from="1728485554165" duration="666000" />
+      <workItem from="1728486377549" duration="2367000" />
+      <workItem from="1728571340427" duration="1278000" />
+      <workItem from="1728647774204" duration="5519000" />
+      <workItem from="1728926696463" duration="611000" />
+      <workItem from="1729075872505" duration="3077000" />
+      <workItem from="1729248667750" duration="5855000" />
+      <workItem from="1729329380662" duration="3326000" />
+      <workItem from="1729421237557" duration="2667000" />
+      <workItem from="1729513594208" duration="5672000" />
+      <workItem from="1729691387339" duration="8536000" />
+      <workItem from="1729846035594" duration="1544000" />
+      <workItem from="1729873777105" duration="1891000" />
+      <workItem from="1729938080928" duration="2715000" />
+      <workItem from="1729977774787" duration="1804000" />
+      <workItem from="1730028602310" duration="1826000" />
+      <workItem from="1730367398271" duration="1728000" />
+      <workItem from="1730433108162" duration="1194000" />
+      <workItem from="1731064418717" duration="1717000" />
+      <workItem from="1731174972355" duration="3007000" />
+      <workItem from="1731267602895" duration="2540000" />
+      <workItem from="1731335500272" duration="899000" />
+      <workItem from="1731509488907" duration="2451000" />
+      <workItem from="1731589188558" duration="1838000" />
+      <workItem from="1731671139218" duration="2075000" />
+      <workItem from="1731760901918" duration="4608000" />
+      <workItem from="1731851583418" duration="1239000" />
+      <workItem from="1731930984030" duration="937000" />
+      <workItem from="1731943046086" duration="3322000" />
+      <workItem from="1732101057050" duration="6291000" />
+      <workItem from="1732173752437" duration="10045000" />
+      <workItem from="1732216543697" duration="3432000" />
+      <workItem from="1732356388468" duration="31666000" />
+      <workItem from="1732439792038" duration="1542000" />
+      <workItem from="1732466130535" duration="3018000" />
+      <workItem from="1732491240417" duration="96000" />
+      <workItem from="1732538755074" duration="3983000" />
+      <workItem from="1732707254130" duration="609000" />
+      <workItem from="1732735570947" duration="2420000" />
+      <workItem from="1732773651200" duration="1569000" />
+      <workItem from="1732781029435" duration="5739000" />
+      <workItem from="1732877692174" duration="1397000" />
+      <workItem from="1732891903293" duration="1620000" />
+      <workItem from="1732960292609" duration="6463000" />
+      <workItem from="1733029184388" duration="3320000" />
+      <workItem from="1733138794227" duration="5357000" />
+      <workItem from="1733245043625" duration="3145000" />
+      <workItem from="1733313774399" duration="6859000" />
+      <workItem from="1733400719315" duration="3164000" />
+      <workItem from="1733564892196" duration="6576000" />
+      <workItem from="1733655469468" duration="1865000" />
+      <workItem from="1733844836416" duration="814000" />
+      <workItem from="1733920589727" duration="735000" />
+      <workItem from="1733926395827" duration="125000" />
+      <workItem from="1733926690441" duration="1455000" />
+      <workItem from="1733996828093" duration="3527000" />
+      <workItem from="1734086438265" duration="1772000" />
+      <workItem from="1734178168346" duration="1305000" />
+      <workItem from="1734260917146" duration="3783000" />
+      <workItem from="1734341065461" duration="5675000" />
+      <workItem from="1734383971913" duration="601000" />
+      <workItem from="1734535112850" duration="1204000" />
+      <workItem from="1734536581085" duration="1505000" />
+      <workItem from="1734538105980" duration="9481000" />
+      <workItem from="1734693151288" duration="84000" />
+      <workItem from="1734693285360" duration="2160000" />
+      <workItem from="1734699879517" duration="2772000" />
+      <workItem from="1734781687452" duration="3450000" />
+      <workItem from="1734875707942" duration="1939000" />
+      <workItem from="1734950209479" duration="3508000" />
+      <workItem from="1735038178868" duration="147000" />
+      <workItem from="1735038336301" duration="304000" />
+      <workItem from="1735120767355" duration="2184000" />
+      <workItem from="1735134198509" duration="3095000" />
+      <workItem from="1735295278364" duration="2356000" />
+      <workItem from="1735492560053" duration="2640000" />
+      <workItem from="1735581188933" duration="1331000" />
+      <workItem from="1735639419774" duration="3527000" />
+      <workItem from="1735706726071" duration="5428000" />
+      <workItem from="1735803407454" duration="8885000" />
+      <workItem from="1735926436799" duration="2011000" />
+      <workItem from="1736006399167" duration="1874000" />
+      <workItem from="1736099484636" duration="4294000" />
+      <workItem from="1736175682535" duration="2638000" />
+      <workItem from="1736255397910" duration="1801000" />
+      <workItem from="1736347245000" duration="825000" />
+      <workItem from="1736348173235" duration="64000" />
+      <workItem from="1736348242198" duration="394000" />
+      <workItem from="1736433021246" duration="2512000" />
+      <workItem from="1736521401512" duration="1246000" />
+      <workItem from="1736609605950" duration="1345000" />
+      <workItem from="1736688615674" duration="1145000" />
+      <workItem from="1736930822271" duration="2102000" />
+      <workItem from="1737022507482" duration="3690000" />
+      <workItem from="1737035339786" duration="1997000" />
+      <workItem from="1737039576887" duration="75000" />
+      <workItem from="1737039665823" duration="2574000" />
+      <workItem from="1737113199074" duration="787000" />
+      <workItem from="1737114200437" duration="20000" />
+      <workItem from="1737114266073" duration="3344000" />
+      <workItem from="1737132135678" duration="7361000" />
+      <workItem from="1737213780904" duration="598000" />
+      <workItem from="1737219147987" duration="402000" />
+      <workItem from="1737537834081" duration="368000" />
+      <workItem from="1737988973947" duration="2050000" />
+      <workItem from="1738081020598" duration="2218000" />
+      <workItem from="1738143408564" duration="705000" />
+      <workItem from="1738172178515" duration="2328000" />
+      <workItem from="1738221639038" duration="4367000" />
+      <workItem from="1738308596869" duration="913000" />
+      <workItem from="1738385716461" duration="4363000" />
+      <workItem from="1738428109936" duration="1878000" />
+      <workItem from="1738486267708" duration="4043000" />
+      <workItem from="1738576629260" duration="10867000" />
+      <workItem from="1738666301499" duration="3855000" />
+      <workItem from="1738743314797" duration="4644000" />
+      <workItem from="1738845645244" duration="2679000" />
+      <workItem from="1738917577707" duration="6023000" />
+      <workItem from="1739007778404" duration="3009000" />
+      <workItem from="1739081966348" duration="5996000" />
+      <workItem from="1739174558272" duration="3764000" />
+      <workItem from="1739272474641" duration="954000" />
+      <workItem from="1739352521785" duration="1073000" />
+      <workItem from="1739364134438" duration="4885000" />
+      <workItem from="1739449668525" duration="13000" />
+      <workItem from="1739449767147" duration="1368000" />
+      <workItem from="1739641722254" duration="149000" />
+      <workItem from="1739641902809" duration="1462000" />
+      <workItem from="1739694202771" duration="3148000" />
+      <workItem from="1739774755534" duration="6685000" />
+      <workItem from="1739859085897" duration="2377000" />
+      <workItem from="1739896031809" duration="1640000" />
+      <workItem from="1739898052125" duration="6581000" />
+      <workItem from="1739944686833" duration="4211000" />
+      <workItem from="1739952248712" duration="329000" />
+      <workItem from="1739952617225" duration="10179000" />
+      <workItem from="1740028893898" duration="6916000" />
+      <workItem from="1740077007972" duration="3098000" />
+      <workItem from="1740121616491" duration="4301000" />
+      <workItem from="1740213669287" duration="1934000" />
+      <workItem from="1740216753019" duration="7516000" />
+      <workItem from="1740298382282" duration="646000" />
+      <workItem from="1740303694206" duration="1042000" />
+      <workItem from="1740381509471" duration="4816000" />
+      <workItem from="1740410708165" duration="6433000" />
+      <workItem from="1740466883208" duration="210000" />
+      <workItem from="1740467130350" duration="653000" />
+      <workItem from="1740469735870" duration="6965000" />
+      <workItem from="1740635332483" duration="5095000" />
+      <workItem from="1740727201961" duration="60000" />
+      <workItem from="1740727286105" duration="815000" />
+      <workItem from="1740731479869" duration="3594000" />
+      <workItem from="1740804062677" duration="1886000" />
+      <workItem from="1740900210882" duration="3749000" />
+      <workItem from="1740981493326" duration="3884000" />
+      <workItem from="1741077995612" duration="8226000" />
+      <workItem from="1741157440180" duration="4814000" />
+      <workItem from="1741246016929" duration="69000" />
+      <workItem from="1741246159226" duration="1789000" />
+      <workItem from="1741334017463" duration="1996000" />
+      <workItem from="1741437669389" duration="2500000" />
+      <workItem from="1741606304800" duration="5789000" />
+      <workItem from="1741634436359" duration="145000" />
+      <workItem from="1741634606405" duration="2449000" />
+      <workItem from="1741680126506" duration="597000" />
+      <workItem from="1741680748771" duration="6101000" />
+      <workItem from="1741778565265" duration="6285000" />
+      <workItem from="1741853942008" duration="120000" />
+      <workItem from="1741854075882" duration="6606000" />
+      <workItem from="1741944612847" duration="3165000" />
+      <workItem from="1742029080240" duration="2545000" />
+      <workItem from="1742114247888" duration="7597000" />
+      <workItem from="1742213461001" duration="620000" />
+      <workItem from="1742290308617" duration="1190000" />
+      <workItem from="1742301544589" duration="6555000" />
+      <workItem from="1742377312783" duration="12772000" />
+      <workItem from="1742452226133" duration="7877000" />
+      <workItem from="1742499064350" duration="1962000" />
+      <workItem from="1742548750416" duration="278000" />
+      <workItem from="1742549039453" duration="1459000" />
+      <workItem from="1742594533186" duration="887000" />
+      <workItem from="1742638230120" duration="4456000" />
+      <workItem from="1742721841449" duration="2965000" />
+      <workItem from="1742739225125" duration="609000" />
+      <workItem from="1742741186566" duration="1246000" />
+      <workItem from="1742824210029" duration="4711000" />
+      <workItem from="1742918667217" duration="340000" />
+      <workItem from="1742919012097" duration="815000" />
+      <workItem from="1742989541345" duration="701000" />
+      <workItem from="1743084956911" duration="3357000" />
+      <workItem from="1743169013365" duration="171000" />
+      <workItem from="1743232997010" duration="8781000" />
+      <workItem from="1743326739258" duration="20095000" />
+      <workItem from="1743417250308" duration="4197000" />
+      <workItem from="1743479240473" duration="783000" />
+      <workItem from="1743588455620" duration="890000" />
+      <workItem from="1743666277750" duration="905000" />
+      <workItem from="1743768224385" duration="5948000" />
+      <workItem from="1743844322266" duration="5019000" />
+      <workItem from="1743930089002" duration="8868000" />
+      <workItem from="1744026895240" duration="1274000" />
+      <workItem from="1744109878237" duration="5667000" />
+      <workItem from="1744209964589" duration="1961000" />
+      <workItem from="1744235537319" duration="580000" />
+      <workItem from="1744278483697" duration="3107000" />
+      <workItem from="1744451098221" duration="1753000" />
+      <workItem from="1744645553680" duration="6341000" />
+      <workItem from="1744721318400" duration="935000" />
+      <workItem from="1744826259391" duration="330000" />
+      <workItem from="1744826811850" duration="18000" />
+      <workItem from="1744884693168" duration="2910000" />
+      <workItem from="1744955794806" duration="145000" />
+      <workItem from="1744955959524" duration="2624000" />
+      <workItem from="1745056394674" duration="6753000" />
+      <workItem from="1745133968290" duration="6813000" />
+      <workItem from="1745225572387" duration="18973000" />
+      <workItem from="1745304844211" duration="18156000" />
+      <workItem from="1745408196244" duration="3516000" />
+      <workItem from="1745494605014" duration="2730000" />
+      <workItem from="1745580967389" duration="2445000" />
+      <workItem from="1745653924801" duration="1027000" />
+      <workItem from="1745654978591" duration="33000" />
+      <workItem from="1745655033407" duration="10071000" />
+      <workItem from="1745741943536" duration="2124000" />
+      <workItem from="1745836824120" duration="2751000" />
+      <workItem from="1745928083101" duration="5770000" />
+      <workItem from="1746017097213" duration="376000" />
+      <workItem from="1746165873293" duration="386000" />
+      <workItem from="1746252706962" duration="6301000" />
+      <workItem from="1746353463757" duration="4252000" />
+      <workItem from="1746443937760" duration="3071000" />
+      <workItem from="1746537078116" duration="3362000" />
+      <workItem from="1746621446725" duration="3999000" />
+      <workItem from="1746701046720" duration="628000" />
+      <workItem from="1746706911473" duration="1966000" />
+      <workItem from="1746737379755" duration="818000" />
+      <workItem from="1746790869849" duration="2430000" />
+      <workItem from="1746859302512" duration="2456000" />
+      <workItem from="1746886020852" duration="668000" />
+      <workItem from="1746960753876" duration="1965000" />
+      <workItem from="1747050568904" duration="846000" />
+      <workItem from="1747136549535" duration="1354000" />
+      <workItem from="1747169446401" duration="599000" />
+      <workItem from="1747221666816" duration="2113000" />
+      <workItem from="1747375146130" duration="7892000" />
+      <workItem from="1747483245202" duration="1115000" />
+      <workItem from="1747552404755" duration="2062000" />
+      <workItem from="1747599674196" duration="1570000" />
+      <workItem from="1747648801302" duration="676000" />
+      <workItem from="1747741862724" duration="1443000" />
+      <workItem from="1747812103722" duration="102000" />
+      <workItem from="1747812218304" duration="488000" />
+      <workItem from="1747812838360" duration="879000" />
+      <workItem from="1747813763400" duration="413000" />
+      <workItem from="1747814198332" duration="2154000" />
+      <workItem from="1747999380354" duration="1285000" />
+      <workItem from="1748088473792" duration="1788000" />
+      <workItem from="1748166263451" duration="3010000" />
+      <workItem from="1748256959353" duration="8383000" />
+      <workItem from="1748349331092" duration="5819000" />
+      <workItem from="1748450467234" duration="729000" />
+      <workItem from="1748451712069" duration="2437000" />
+      <workItem from="1748521109900" duration="2837000" />
+      <workItem from="1748587471785" duration="4244000" />
+      <workItem from="1748676326989" duration="5388000" />
+      <workItem from="1748714894182" duration="1397000" />
+      <workItem from="1748748677731" duration="3117000" />
+      <workItem from="1748865147081" duration="739000" />
+      <workItem from="1748950047745" duration="3837000" />
+      <workItem from="1749051823394" duration="305000" />
+      <workItem from="1749052276265" duration="3580000" />
+      <workItem from="1749127031226" duration="1291000" />
+      <workItem from="1749235156044" duration="1728000" />
+    </task>
+    <task id="LOCAL-00093" summary="added the option to modify the screen title.">
+      <option name="closed" value="true" />
+      <created>1735493512956</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1735493512956</updated>
+    </task>
+    <task id="LOCAL-00094" summary="fixed default modified window title to be default">
+      <option name="closed" value="true" />
+      <created>1735493733492</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1735493733492</updated>
+    </task>
+    <task id="LOCAL-00095" summary="fixed a issue that cased client side sended messages to be interpreted again.">
+      <option name="closed" value="true" />
+      <created>1735836610670</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1735836610671</updated>
+    </task>
+    <task id="LOCAL-00096" summary="fixed bb:party issues.">
+      <option name="closed" value="true" />
+      <created>1735839435556</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1735839435556</updated>
+    </task>
+    <task id="LOCAL-00097" summary="fixed bb:party issues.">
+      <option name="closed" value="true" />
+      <created>1736197073657</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1736197073657</updated>
+    </task>
+    <task id="LOCAL-00098" summary="fixed bb:party issues.">
+      <option name="closed" value="true" />
+      <created>1736197103272</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1736197103272</updated>
+    </task>
+    <task id="LOCAL-00099" summary="sss">
+      <option name="closed" value="true" />
+      <created>1736197152579</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1736197152579</updated>
+    </task>
+    <task id="LOCAL-00100" summary="added hackthetime.de as homepage and website in mod menu entry.">
+      <option name="closed" value="true" />
+      <created>1738175444652</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1738175444652</updated>
+    </task>
+    <task id="LOCAL-00101" summary="added warp party constant.">
+      <option name="closed" value="true" />
+      <created>1738538783616</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1738538783617</updated>
+    </task>
+    <task id="LOCAL-00102" summary="fixed minions associated with spider eyes and string collection.">
+      <option name="closed" value="true" />
+      <created>1738538829113</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1738538829113</updated>
+    </task>
+    <task id="LOCAL-00103" summary="server side related changes.">
+      <option name="closed" value="true" />
+      <created>1738538874514</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1738538874514</updated>
+    </task>
+    <task id="LOCAL-00104" summary="fixed a bunch of json injection vulnerabilities.">
+      <option name="closed" value="true" />
+      <created>1738578936074</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1738578936074</updated>
+    </task>
+    <task id="LOCAL-00105" summary="added block for dynamic splash announce while outside of the hub.">
+      <option name="closed" value="true" />
+      <created>1738579153074</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1738579153074</updated>
+    </task>
+    <task id="LOCAL-00106" summary="changed party managing code to use a new class.">
+      <option name="closed" value="true" />
+      <created>1738589028168</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1738589028168</updated>
+    </task>
+    <task id="LOCAL-00107" summary="changed party managing code to use a new PartyManager class.">
+      <option name="closed" value="true" />
+      <created>1738590405912</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1738590405912</updated>
+    </task>
+    <task id="LOCAL-00108" summary="server side related changes.">
+      <option name="closed" value="true" />
+      <created>1739822942562</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1739822942562</updated>
+    </task>
+    <task id="LOCAL-00109" summary="added missing chum TradeType">
+      <option name="closed" value="true" />
+      <created>1739859202129</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1739859202129</updated>
+    </task>
+    <task id="LOCAL-00110" summary="fixed an issue with numpad codes with the overwrite.">
+      <option name="closed" value="true" />
+      <created>1740067404272</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1740067404272</updated>
+    </task>
+    <task id="LOCAL-00111" summary="Rebranded BBsentials to Bingo Net.">
+      <option name="closed" value="true" />
+      <created>1742827496562</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1742827496562</updated>
+    </task>
+    <task id="LOCAL-00112" summary="added GoToIslandAddonPacket">
+      <option name="closed" value="true" />
+      <created>1743275544782</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1743275544782</updated>
+    </task>
+    <task id="LOCAL-00113" summary="bug fixes">
+      <option name="closed" value="true" />
+      <created>1743275563135</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1743275563135</updated>
+    </task>
+    <task id="LOCAL-00114" summary="made connect to hypixel blocking">
+      <option name="closed" value="true" />
+      <created>1743275586991</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1743275586991</updated>
+    </task>
+    <task id="LOCAL-00115" summary="cleaned up code">
+      <option name="closed" value="true" />
+      <created>1743275598842</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1743275598842</updated>
+    </task>
+    <task id="LOCAL-00116" summary="added pojav setup command.">
+      <option name="closed" value="true" />
+      <created>1743276119390</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1743276119390</updated>
+    </task>
+    <task id="LOCAL-00117" summary="fixed a freeze problem with quick launch.">
+      <option name="closed" value="true" />
+      <created>1743276346685</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1743276346685</updated>
+    </task>
+    <task id="LOCAL-00118" summary="fixed socket addons being disabled not bein respected properly.">
+      <option name="closed" value="true" />
+      <created>1743276508938</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1743276508938</updated>
+    </task>
+    <task id="LOCAL-00119" summary="made connect to server wait for minecraft to be fully loaded.">
+      <option name="closed" value="true" />
+      <created>1743276766204</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1743276766204</updated>
+    </task>
+    <task id="LOCAL-00120" summary="bump mod version to 0.99.3.5">
+      <option name="closed" value="true" />
+      <created>1743326805073</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1743326805073</updated>
+    </task>
+    <task id="LOCAL-00121" summary="various improvements around the GoToIslandAddonPacket function">
+      <option name="closed" value="true" />
+      <created>1743351599690</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1743351599690</updated>
+    </task>
+    <task id="LOCAL-00122" summary="fixed a issue with the recent anti repost on message update for splashes.">
+      <option name="closed" value="true" />
+      <created>1743933421773</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1743933421773</updated>
+    </task>
+    <task id="LOCAL-00123" summary="fixed bb party join and added forgotten bb credits for those.">
+      <option name="closed" value="true" />
+      <created>1743977308497</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1743977308498</updated>
+    </task>
+    <task id="LOCAL-00124" summary="fixed error output when keeping the join splash lobby button pressed">
+      <option name="closed" value="true" />
+      <created>1743977336573</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1743977336573</updated>
+    </task>
+    <task id="LOCAL-00125" summary="renamed gradle files to allow for better help.">
+      <option name="closed" value="true" />
+      <created>1745316090864</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1745316090864</updated>
+    </task>
+    <task id="LOCAL-00126" summary="sources contain kotlin now. actual run code doesnt though.">
+      <option name="closed" value="true" />
+      <created>1745318299950</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1745318299950</updated>
+    </task>
+    <task id="LOCAL-00127" summary="kotlin related changes.">
+      <option name="closed" value="true" />
+      <created>1745654273964</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1745654273965</updated>
+    </task>
+    <task id="LOCAL-00128" summary="basic moves">
+      <option name="closed" value="true" />
+      <created>1745655476410</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1745655476410</updated>
+    </task>
+    <task id="LOCAL-00129" summary="more git moves">
+      <option name="closed" value="true" />
+      <created>1745655728262</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1745655728262</updated>
+    </task>
+    <task id="LOCAL-00130" summary="fixed a gradle class not found exception">
+      <option name="closed" value="true" />
+      <created>1745695573097</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1745695573097</updated>
+    </task>
+    <task id="LOCAL-00131" summary="fixed some kotlin compile issues.">
+      <option name="closed" value="true" />
+      <created>1745696235714</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1745696235714</updated>
+    </task>
+    <task id="LOCAL-00132" summary="moved kotlin files to kotlin src">
+      <option name="closed" value="true" />
+      <created>1745696921205</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1745696921205</updated>
+    </task>
+    <task id="LOCAL-00133" summary="fixed some kotlin compile issues.">
+      <option name="closed" value="true" />
+      <created>1745703721429</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1745703721429</updated>
+    </task>
+    <task id="LOCAL-00134" summary="fixed some kotlin compile issues.">
+      <option name="closed" value="true" />
+      <created>1745928202528</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1745928202528</updated>
+    </task>
+    <task id="LOCAL-00135" summary="fixed issues in the APIJson Code.">
+      <option name="closed" value="true" />
+      <created>1746284968385</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1746284968385</updated>
+    </task>
+    <task id="LOCAL-00136" summary="Server Side related changes.&#10;&#10;Improved Nullability Info in Kotlin.">
+      <option name="closed" value="true" />
+      <created>1747221736962</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1747221736962</updated>
+    </task>
+    <task id="LOCAL-00137" summary="server side changes.">
+      <option name="closed" value="true" />
+      <created>1747812945156</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1747812945156</updated>
+    </task>
+    <task id="LOCAL-00138" summary="database rewrite related changes">
+      <option name="closed" value="true" />
+      <created>1747857593144</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1747857593144</updated>
+    </task>
+    <task id="LOCAL-00139" summary="code cleanup">
+      <option name="closed" value="true" />
+      <created>1748692319354</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1748692319354</updated>
+    </task>
+    <task id="LOCAL-00140" summary="changed self remove to not delete the file but instead rename it. this way users can read the jar file afterwards and make sure I did not try to hide anything or sth.">
+      <option name="closed" value="true" />
+      <created>1748692458612</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1748692458612</updated>
+    </task>
+    <task id="LOCAL-00141" summary="updated first boot prompt text to include Server Swap.">
+      <option name="closed" value="true" />
+      <created>1748977707971</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1748977707971</updated>
+    </task>
+    <option name="localTasksCounter" value="142" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="GitHub.CommitStatus" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="user">
+                    <value>
+                      <list>
+                        <option value="*" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="added pojav setup command." />
+    <MESSAGE value="fixed a freeze problem with quick launch." />
+    <MESSAGE value="fixed socket addons being disabled not bein respected properly." />
+    <MESSAGE value="made connect to server wait for minecraft to be fully loaded." />
+    <MESSAGE value="bump mod version to 0.99.3.5" />
+    <MESSAGE value="various improvements around the GoToIslandAddonPacket function" />
+    <MESSAGE value="fixed a issue with the recent anti repost on message update for splashes." />
+    <MESSAGE value="fixed bb party join and added forgotten bb credits for those." />
+    <MESSAGE value="fixed error output when keeping the join splash lobby button pressed" />
+    <MESSAGE value="renamed gradle files to allow for better help." />
+    <MESSAGE value="sources contain kotlin now. actual run code doesnt though." />
+    <MESSAGE value="kotlin related changes." />
+    <MESSAGE value="basic moves" />
+    <MESSAGE value="more git moves" />
+    <MESSAGE value="fixed a gradle class not found exception" />
+    <MESSAGE value="moved kotlin files to kotlin src" />
+    <MESSAGE value="more server related kotlin changes." />
+    <MESSAGE value="more server related kotlin changes." />
+    <MESSAGE value="fixed issues in the APIJson Code." />
+    <MESSAGE value="Server Side related changes.&#10;&#10;Improved Nullability Info in Kotlin." />
+    <MESSAGE value="server side changes." />
+    <MESSAGE value="database rewrite related changes" />
+    <MESSAGE value="code cleanup" />
+    <MESSAGE value="changed self remove to not delete the file but instead rename it. this way users can read the jar file afterwards and make sure I did not try to hide anything or sth." />
+    <MESSAGE value="updated first boot prompt text to include Server Swap." />
+    <option name="LAST_COMMIT_MESSAGE" value="updated first boot prompt text to include Server Swap." />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <condition expression="packet.slot==25" language="JAVA" />
+          <dependency master-id="0" />
+          <url>jar://$PROJECT_DIR$/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-merged-cbc19a2037/1.20.6-net.fabricmc.yarn.1_20_6.1.20.6+build.1-v2/minecraft-merged-cbc19a2037-1.20.6-net.fabricmc.yarn.1_20_6.1.20.6+build.1-v2-sources.jar!/net/minecraft/client/network/ClientPlayNetworkHandler.java</url>
+          <line>1222</line>
+          <option name="timeStamp" value="170" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <dependency master-id="1" />
+          <url>jar://$PROJECT_DIR$/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-merged-cbc19a2037/1.20.6-net.fabricmc.yarn.1_20_6.1.20.6+build.1-v2/minecraft-merged-cbc19a2037-1.20.6-net.fabricmc.yarn.1_20_6.1.20.6+build.1-v2-sources.jar!/net/minecraft/client/network/ClientPlayNetworkHandler.java</url>
+          <line>1257</line>
+          <option name="timeStamp" value="172" />
+        </line-breakpoint>
+        <line-breakpoint suspend="NONE" type="java-line">
+          <dependency id="0" />
+          <url>jar://$PROJECT_DIR$/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-merged-cbc19a2037/1.20.6-net.fabricmc.yarn.1_20_6.1.20.6+build.1-v2/minecraft-merged-cbc19a2037-1.20.6-net.fabricmc.yarn.1_20_6.1.20.6+build.1-v2-sources.jar!/net/minecraft/client/network/ClientPlayNetworkHandler.java</url>
+          <line>1223</line>
+          <log-expression expression="Chat.sendPrivateMessageToSelfInfo(&quot;Slot update: %d | %s&quot;.formatted(packet.slot,packet.getStack().toString()))" language="JAVA" />
+          <option name="timeStamp" value="175" />
+        </line-breakpoint>
+        <line-breakpoint suspend="NONE" type="java-line">
+          <dependency id="1" />
+          <url>jar://$PROJECT_DIR$/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-merged-cbc19a2037/1.20.6-net.fabricmc.yarn.1_20_6.1.20.6+build.1-v2/minecraft-merged-cbc19a2037-1.20.6-net.fabricmc.yarn.1_20_6.1.20.6+build.1-v2-sources.jar!/net/minecraft/client/network/ClientPlayNetworkHandler.java</url>
+          <line>1258</line>
+          <log-expression expression="Chat.sendPrivateMessageToSelfInfo(&quot;Received inv packet! %s&quot;.formatted(packet.syncId))" language="JAVA" />
+          <option name="timeStamp" value="176" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <condition expression="stack.getName().getString().contains(&quot;##8&quot;)" language="JAVA" />
+          <url>file://$PROJECT_DIR$/fabric/src/main/java/de/hype/bingonet/fabric/mixins/helperclasses/RenderingDefinitions.java</url>
+          <line>296</line>
+          <option name="timeStamp" value="250" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <condition expression="stack.getName().getString().contains(&quot;##8&quot;)" language="JAVA" />
+          <url>file://$PROJECT_DIR$/fabric/src/main/java/de/hype/bingonet/fabric/mixins/helperclasses/RenderingDefinitions.java</url>
+          <line>304</line>
+          <option name="timeStamp" value="251" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/common/src/main/java/de/hype/bingonet/client/common/bingobrewers/BingoBrewersPackets.java</url>
+          <line>105</line>
+          <option name="timeStamp" value="257" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-method">
+          <url>file://$PROJECT_DIR$/fabric/src/main/java/de/hype/bingonet/fabric/DebugThread.java</url>
+          <line>43</line>
+          <properties class="de.hype.bingonet.fabric.DebugThread">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="252" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-defaults>
+        <breakpoint suspend="THREAD" type="java-method" />
+        <breakpoint suspend="THREAD" type="java-line" />
+        <breakpoint suspend="THREAD" type="kotlin-line" />
+        <breakpoint suspend="THREAD" type="kotlin-function" />
+      </breakpoints-defaults>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

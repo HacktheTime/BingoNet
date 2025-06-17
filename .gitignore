@@ -28,4 +28,7 @@ logs
 /runforge/configManager/splash.properties
 /temp.txt
 /temp.json
-/fabric/run2/mods/
+/fabric/run2/
+/.skyblockitems_cache_backup
+/.skyblockitems_meta_backup
+/gradle-links/
