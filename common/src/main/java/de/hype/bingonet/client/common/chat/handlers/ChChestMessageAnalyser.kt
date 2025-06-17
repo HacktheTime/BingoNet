@@ -68,15 +68,16 @@ class ChChestMessageAnalyser {
         if (parsed != null) items.compute(parsed.component1()) { k, v -> parsed.component2().plus(v ?: 0..0) }
     }
 
-    fun IntRange.toString(): String {
-        return if (this.first == this.last) {
-            this.first.toString()
-        } else {
-            "${this.first}-${this.last}"
-        }
-    }
-
     fun IntRange.plus(range: IntRange): IntRange {
         return IntRange(this.first + range.first, this.last + range.last)
     }
 }
+
+fun IntRange.toGoodString(): String {
+    return if (this.first == this.last) {
+        this.first.toString()
+    } else {
+        "${this.first}-${this.last}"
+    }
+}
+

@@ -122,7 +122,7 @@ class AddonHandler(var client: Socket) : Runnable {
     }
 
     fun onGetWaypointsAddonPacket(packet: GetWaypointsAddonPacket?) {
-        sendPacket<GetWaypointsAddonPacket?>(
+        sendPacket(
             GetWaypointsAddonPacket(
                 Waypoints.waypoints.values.stream()
                     .map<ClientWaypointData?>((Function { waypoint: Waypoints? -> (waypoint as ClientWaypointData?) }))

@@ -2,7 +2,6 @@ package de.hype.bingonet.fabric.command;
 
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
-import com.mojang.brigadier.context.CommandContext;
 import de.hype.bingonet.client.common.chat.Chat;
 import de.hype.bingonet.client.common.client.BingoNet;
 import de.hype.bingonet.client.common.client.updatelisteners.UpdateListenerManager;
@@ -11,21 +10,22 @@ import de.hype.bingonet.client.common.config.PartyManager;
 import de.hype.bingonet.client.common.mclibraries.EnvironmentCore;
 import de.hype.bingonet.client.common.mclibraries.MCCommand;
 import de.hype.bingonet.environment.packetconfig.AbstractPacket;
-import de.hype.bingonet.shared.constants.*;
-import de.hype.bingonet.shared.objects.*;
+import de.hype.bingonet.shared.constants.Islands;
+import de.hype.bingonet.shared.constants.MiningEvents;
+import de.hype.bingonet.shared.constants.TradeType;
+import de.hype.bingonet.shared.objects.Position;
+import de.hype.bingonet.shared.objects.SplashData;
+import de.hype.bingonet.shared.objects.SplashLocation;
+import de.hype.bingonet.shared.objects.SplashLocations;
 import de.hype.bingonet.shared.packets.function.SplashNotifyPacket;
 import de.hype.bingonet.shared.packets.mining.MiningEventPacket;
 import de.hype.bingonet.shared.packets.network.BingoChatMessagePacket;
 import de.hype.bingonet.shared.packets.network.BroadcastMessagePacket;
 import de.hype.bingonet.shared.packets.network.InternalCommandPacket;
 import de.hype.bingonet.shared.packets.service.RequestServiceTradePacket;
-import dev.xpple.clientarguments.arguments.CBlockPosArgument;
-import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.command.CommandSource;
-import net.minecraft.util.math.BlockPos;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -128,6 +128,12 @@ public class Commands implements MCCommand {
                                 // And if the sdk is downloaded, this is basically a crash
                             }))
                     ));/*BingoChatLong*/
+            dispatcher.register(
+                    literal("bnjoinlobby").then(argument("serverid", StringArgumentType.greedyString()).executes((c) -> {
+                        BingoNet.connection.sendPacket(new RequestServerWarpPacket(StringArgumentType.getString(c, "serverid")));
+                        return 1;
+                    }))
+            );
         }));
     }
 

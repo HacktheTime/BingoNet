@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import de.hype.bingonet.client.common.chat.Chat;
 import de.hype.bingonet.client.common.client.BingoNet;
 import de.hype.bingonet.client.common.client.SplashManager;
+import de.hype.bingonet.client.common.client.updatelisteners.UpdateListenerManager;
 import de.hype.bingonet.client.common.config.PartyManager;
 import de.hype.bingonet.shared.constants.Formatting;
 import de.hype.bingonet.shared.constants.Islands;
@@ -210,12 +211,7 @@ public class BingoBrewersPackets {
 
         @Override
         public void execute(receiveCHItems packet, Client client) {
-            if (BingoNet.dataStorage.serverId.equals(packet.server)) {
-                var conf = BingoNet.temporaryConfig;
-                for (ChestInfo chestInfo : chestMap) {
-
-                }
-            }
+            UpdateListenerManager.onChLobbyDataReceived(packet);
         }
     }
 

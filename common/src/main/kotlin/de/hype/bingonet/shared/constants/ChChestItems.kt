@@ -25,7 +25,7 @@ package de.hype.bingonet.shared.constants
  * Make sure too use the EXACT display name!
 </pre> *
  */
-enum class ValueableChChestItem(val displayName: String, val iconPath: String?) {
+enum class ValueableChChestItem(val displayName: String, val iconPath: String) {
     PrehistoricEgg("Prehistoric Egg", "prehistoric_egg"),
 
     Pickonimbus2000("Pickonimbus 2000", "pickonimbus"),

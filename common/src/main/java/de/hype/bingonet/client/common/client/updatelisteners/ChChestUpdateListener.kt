@@ -1,142 +1,140 @@
-package de.hype.bingonet.client.common.client.updatelisteners;
+package de.hype.bingonet.client.common.client.updatelisteners
 
-import de.hype.bingonet.client.common.chat.Chat;
-import de.hype.bingonet.client.common.client.BingoNet;
-import de.hype.bingonet.client.common.client.objects.ServerSwitchTask;
-import de.hype.bingonet.client.common.mclibraries.EnvironmentCore;
-import de.hype.bingonet.client.common.objects.Waypoints;
-import de.hype.bingonet.shared.constants.ChChestItem;
-import de.hype.bingonet.shared.constants.StatusConstants;
-import de.hype.bingonet.shared.objects.ChChestData;
-import de.hype.bingonet.shared.objects.Position;
-import de.hype.bingonet.shared.objects.RenderInformation;
-import de.hype.bingonet.shared.packets.mining.ChestLobbyUpdatePacket;
+import de.hype.bingonet.client.common.bingobrewers.BingoBrewersPackets.SubscribeToCHServer
+import de.hype.bingonet.client.common.chat.handlers.toGoodString
+import de.hype.bingonet.client.common.client.BingoNet
+import de.hype.bingonet.client.common.client.BingoNet.bingoBrewersClient
+import de.hype.bingonet.client.common.client.objects.ServerSwitchTask
+import de.hype.bingonet.client.common.mclibraries.EnvironmentCore
+import de.hype.bingonet.client.common.objects.Waypoints
+import de.hype.bingonet.environment.packetconfig.AbstractPacket
+import de.hype.bingonet.shared.constants.ChChestItem
+import de.hype.bingonet.shared.constants.Islands
+import de.hype.bingonet.shared.constants.ValueableChChestItem
+import de.hype.bingonet.shared.objects.ChChestData
+import de.hype.bingonet.shared.objects.Position
+import de.hype.bingonet.shared.objects.RenderInformation
 
-import java.sql.SQLException;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-public class ChChestUpdateListener extends UpdateListener {
-    public ChestLobbyData lobby;
-    List<Position> chestsOpened = new ArrayList<>();
-    Map<Position, Waypoints> waypoints = new HashMap<>();
+class ChChestUpdateListener : UpdateListener() {
+    val chestsOpened: MutableList<Position> = ArrayList()
+    val waypoints: MutableMap<Position, Waypoints> = HashMap()
+    val reportedChests: MutableMap<Position, ChChestData> = HashMap()
 
-    public void updateLobby(ChestLobbyData data) {
-        lobby = data;
-        setWaypoints();
+    fun updateLobby(data: List<ChChestData>) {
+        reportedChests.putAll(data.associateBy { it.coords })
+        setWaypoints()
     }
 
-    public void setWaypoints() {
-        if (!BingoNet.chChestConfig.addWaypointForChests || lobby == null) return;
-        String username = BingoNet.generalConfig.getUsername();
-        for (ChChestData chest : lobby.getChests()) {
-            Waypoints waypoint = waypoints.get(chest.coords);
-            boolean shouldDisplay = !(chestsOpened.contains(chest.coords) || chest.getFinder().equals(username));
+    fun setWaypoints() {
+        if (!BingoNet.chChestConfig.addWaypointForChests) return
+        for (chest in reportedChests.entries) {
+            val waypoint = waypoints.get(chest.key)
+            val shouldDisplay = !(chestsOpened.contains(chest.key))
             if (waypoint != null) {
-                waypoint.setVisible(shouldDisplay);
-                continue;
+                waypoint.visible = shouldDisplay
+                continue
             }
-            List<ChChestItem> chestItems = new ArrayList<>();
-            lobby.getChests().forEach(chChestData -> chestItems.addAll(chChestData.items));
-            List<RenderInformation> renderInformationList = new ArrayList<>();
-            chestItems.stream().filter(ChChestItem::hasDisplayPath).forEach((item) -> renderInformationList.add(new RenderInformation("bingonet", "textures/waypoints/" + item.getDisplayPath() + ".png")));
-            if (Waypoints.waypoints.values().stream().noneMatch(waypointFiltered -> waypointFiltered.getPosition().equals(chest.coords))) {
-                Waypoints newpoint = new Waypoints(chest.coords, "{\"text\":\"" + chestItems.subList(0, Math.min(chestItems.size(), 3)).stream().map(ChChestItem::getDisplayName).collect(Collectors.joining(", ")) + "\"}", 1000, shouldDisplay, true, renderInformationList, BingoNet.chChestConfig.defaultWaypointColor, BingoNet.chChestConfig.doChestWaypointsTracers);
-                waypoints.put(newpoint.getPosition(), newpoint);
+            val valuable: List<ValueableChChestItem> =
+                chest.value.items.mapNotNull { it.key.getAsValueableItem(it.value) }
+            val renderInformationList: MutableList<RenderInformation> = ArrayList()
+            valuable.forEach {
+                renderInformationList.add(
+                    RenderInformation(
+                        "bingonet",
+                        "textures/waypoints/" + it.iconPath + ".png"
+                    )
+                )
+            }
+            if (Waypoints.waypoints.values.none { waypointFiltered: Waypoints -> waypointFiltered.position.equals(chest.key) }
+            ) {
+                val jsonText = StringBuilder()
+                jsonText.append("[\"\"")
+                if (chest.value.items.isNotEmpty()) {
+                    jsonText.append(",")
+                    chest.value.items.forEach {
+                        jsonText.append("{\"text\":\"")
+                        jsonText.append(it.key.itemFormatting)
+                        jsonText.append(it.key.displayName)
+                        jsonText.append(" ")
+                        jsonText.append(it.key.countFormatting)
+                        jsonText.append(it.value.toGoodString())
+                        jsonText.append("\"},{\"text\":\"\\n\"}")
+                    }
+                }
+                jsonText.append("]")
+                val newpoint = Waypoints(
+                    chest.key,
+                    jsonText.toString(),
+                    1000,
+                    shouldDisplay,
+                    true,
+                    renderInformationList,
+                    BingoNet.chChestConfig.defaultWaypointColor,
+                    BingoNet.chChestConfig.doChestWaypointsTracers
+                )
+                waypoints.put(newpoint.position, newpoint)
             }
         }
     }
 
-    @Override
-    public void run() {
-        ServerSwitchTask.onServerLeaveTask(() -> isInLobby.set(false));
-        int maxPlayerCount = EnvironmentCore.utils.getMaximumPlayerCount();
-        isInLobby.set(true);
-        setWaypoints();
-        //(15mc days * 20 min day * 60 to seconds * 20 to ticks) -> 408000 | 1s 1000ms 1000/20 for ms for 1 tick.
-        try {
-            lobby.setLobbyMetaData(null, EnvironmentCore.utils.getLobbyClosingTime());
-        } catch (Exception ignored) {
-            //never thrown lol
+    override fun run() {
+
+    }
+
+    override fun allowOverlayOverall(): Boolean {
+        return BingoNet.hudConfig.useChChestHudOverlay
+    }
+
+    val unopenedChests: List<ChChestData>
+        get() {
+            return reportedChests.filterNot { chestsOpened.contains(it.key) }.values.toList()
         }
-        while (isInLobby.get()) {
-            List<String> players = EnvironmentCore.utils.getPlayers();
-            if ((players.size() >= maxPlayerCount)) {
-                setStatus(StatusConstants.FULL);
-            } else if ((EnvironmentCore.utils.getPlayerCount() < maxPlayerCount - 3) && lobby.getStatus().equals(StatusConstants.FULL.displayName)) {
-                setStatus(StatusConstants.OPEN);
-            }
-            try {
-                // 3s
-                Thread.sleep(3000);
-            } catch (InterruptedException ignored) {
-            }
+
+    fun addOpenedChest(pos: Position) {
+        BingoNet.executionService.execute(Runnable {
+            if (chestsOpened.contains(pos)) return@Runnable
+            chestsOpened.add(pos)
+            setWaypoints()
+        })
+    }
+
+    fun addChestAndUpdate(coords: Position, items: Map<ChChestItem, IntRange>) {
+        reportedChests.put(coords, ChChestData(coords, items))
+    }
+
+    companion object {
+        fun init() {
+            ServerSwitchTask.onServerJoinTask(Runnable {
+                val serverId = BingoNet.dataStorage.serverId
+                if (BingoNet.dataStorage.island == Islands.CRYSTAL_HOLLOWS) {
+                    val packet = SubscribeToChServer(serverId, EnvironmentCore.utils.getLobbyClosingTime())
+                    BingoNet.connection.sendPacket(packet)
+                    val bbsub: SubscribeToCHServer?
+                    if (BingoNet.bingoBrewersIntegrationConfig.showChests) {
+                        bbsub = SubscribeToCHServer()
+                        bbsub.unsubscribe = false
+                        bbsub.server = serverId
+                        bbsub.day = EnvironmentCore.utils.getLobbyDay()
+                        bingoBrewersClient.sendTCP(bbsub)
+                        bingoBrewersClient.sendTCP(bbsub)
+                    } else {
+                        bbsub = null
+                    }
+
+                    ServerSwitchTask.onServerLeaveTask(Runnable {
+                        val unsubpacket = UnsubscribeFromChServer(serverId, EnvironmentCore.utils.getPlayers())
+                        BingoNet.connection.sendPacket(unsubpacket)
+                        if (bbsub != null) {
+                            bbsub.unsubscribe = true
+                            //I'm not updating the day since I fear that my server leave task would send bad data since the
+                            // day is world based and my leave procs on new server join due too it being the only fabric
+                            // event. The Tablist Data gets updated slower, and so it is for the Hypixel API Location Packet.
+                            bingoBrewersClient.sendTCP(bbsub)
+                        }
+                    }, false)
+                }
+            }, true)
         }
-    }
-
-    @Override
-    public boolean allowOverlayOverall() {
-        return BingoNet.hudConfig.useChChestHudOverlay;
-    }
-
-    public void setStatus(StatusConstants newStatus) {
-        setStatusNoUpdate(newStatus);
-        sendUpdatePacket();
-    }
-
-    public void setStatusNoUpdate(StatusConstants newStatus) {
-        if (lobby.getStatus().equals(newStatus.displayName)) return;
-        try {
-            lobby.setStatus(newStatus);
-        } catch (SQLException e) {
-            //never thrown lol
-        }
-    }
-
-    public void sendUpdatePacket() {
-        updateMetaData();
-        getConnection().sendPacket(new ChestLobbyUpdatePacket(lobby));
-    }
-
-    public List<ChChestData> getUnopenedChests() {
-        List<ChChestData> unopened = new ArrayList<>();
-        for (ChChestData chest : lobby.getChests()) {
-            if (!chestsOpened.contains(chest.coords)) unopened.add(chest);
-        }
-        return unopened;
-    }
-
-    public void addOpenedChest(Position pos) {
-        BingoNet.executionService.execute(() -> {
-            if (chestsOpened.contains(pos)) return;
-            chestsOpened.add(pos);
-            setWaypoints();
-        });
-    }
-
-    public void updateMetaData() {
-        try {
-            Instant closingTime = EnvironmentCore.utils.getLobbyClosingTime();
-            if (Instant.now().isAfter(closingTime)) setStatusNoUpdate(StatusConstants.CLOSED);
-            List<String> players = EnvironmentCore.utils.getPlayers();
-            players = players.stream().map(username -> username.replaceAll("\\[\\S+]", "").trim()).filter(userName -> !userName.equals(lobby.getContactMan())).collect(Collectors.toList());
-            lobby.setLobbyMetaData(players, closingTime);
-        } catch (SQLException e) {
-            Chat.sendPrivateMessageToSelfError("Uhm how did this happen: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    public boolean currentlyInChLobby() {
-        return lobby != null && lobby.serverId.equals(BingoNet.dataStorage.serverId);
-    }
-
-    public void addChestAndUpdate(Position coords, List<ChChestItem> items) {
-        lobby.addChest(new ChChestData(BingoNet.generalConfig.getUsername(), coords, items));
-        sendUpdatePacket();
     }
 }

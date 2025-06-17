@@ -191,8 +191,8 @@ class BBsentialConnection {
         //this does absolutely nothing. dummy for packet in packt manager
     }
 
-    fun <E : AbstractPacket?> sendPacket(packet: E?) {
-        val packetName = packet!!.javaClass.getSimpleName()
+    fun <E : AbstractPacket> sendPacket(packet: E) {
+        val packetName = packet.javaClass.getSimpleName()
         val rawjson = PacketUtils.parsePacketToJson(packet)
         if (this.isConnected && writer != null) {
             if (BingoNet.developerConfig.isDetailedDevModeEnabled() && !((packet.javaClass == RequestConnectPacket::class.java && !BingoNet.bbServerConfig.useMojangAuth) && BingoNet.developerConfig.devSecurity)) {
@@ -312,7 +312,7 @@ class BBsentialConnection {
 
     fun onInternalCommandPacket(packet: InternalCommandPacket) {
         if (packet.command == InternalCommandPacket.REQUEST_POT_DURATION) {
-            sendPacket<InternalCommandPacket?>(
+            sendPacket(
                 InternalCommandPacket(
                     InternalCommandPacket.SET_POT_DURATION,
                     arrayOf<kotlin.String>(EnvironmentCore.utils.getPotTime().toString())
@@ -485,9 +485,9 @@ class BBsentialConnection {
                 BingoNet.generalConfig.getApiVersion(),
                 AuthenticationConstants.MOJANG
             )
-            sendPacket<RequestConnectPacket?>(connectPacket)
+            sendPacket(connectPacket)
         } else {
-            sendPacket<RequestConnectPacket?>(
+            sendPacket(
                 RequestConnectPacket(
                     BingoNet.generalConfig.getMCUUID(),
                     BingoNet.bbServerConfig.apiKey,
@@ -563,7 +563,7 @@ class BBsentialConnection {
     }
 
     fun onGetWaypointsPacket(packet: GetWaypointsPacket?) {
-        sendPacket<GetWaypointsPacket?>(
+        sendPacket(
             GetWaypointsPacket(
                 Waypoints.waypoints.values.stream()
                     .map<ClientWaypointData?>((Function { waypoint: Waypoints? -> (waypoint as ClientWaypointData?) }))
@@ -609,8 +609,8 @@ class BBsentialConnection {
         if (packet.maximumPlayerCount != null && packet.maximumPlayerCount!! <= playerCount.size) return
         if (packet.minimumPlayerCount != null && packet.minimumPlayerCount!! >= playerCount.size) return
         if (packet.username != null && !playerCount.contains(packet.username)) return
-        sendPacket<WantedSearchPacketReply?>(
-            packet.preparePacketToReplyToThis<WantedSearchPacketReply?>(
+        sendPacket(
+            packet.preparePacketToReplyToThis<WantedSearchPacketReply>(
                 WantedSearchPacketReply(
                     BingoNet.generalConfig.getUsername(),
                     EnvironmentCore.utils.getPlayers(),
@@ -637,7 +637,7 @@ class BBsentialConnection {
     }
 
     fun onRequestMinionDataPacket(packet: RequestMinionDataPacket) {
-        sendPacket<AbstractPacket?>(packet.preparePacketToReplyToThis<AbstractPacket?>(EnvironmentCore.utils.getMiniondata()))
+        sendPacket(packet.preparePacketToReplyToThis(EnvironmentCore.utils.getMiniondata()))
     }
 
     fun onCommandChatPromptPacket(packet: CommandChatPromptPacket) {
@@ -653,7 +653,7 @@ class BBsentialConnection {
     fun onPacketChatPromptPacket(packet: PacketChatPromptPacket) {
         val prompt = ChatPrompt(Runnable {
             for (p in packet.packets!!) {
-                sendPacket<AbstractPacket?>(p)
+                sendPacket(p)
             }
         }, 10)
         Chat.sendPrivateMessageToSelfText(packet.printMessage)

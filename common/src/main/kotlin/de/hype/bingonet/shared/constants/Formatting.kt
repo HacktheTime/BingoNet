@@ -55,5 +55,9 @@ enum class Formatting(val mCCode: String, @JvmField val discordFormattingCode: S
             return entries.firstOrNull { it.mCCode == value }
                 ?: throw IllegalArgumentException("No Formatting found with mCCode: $value")
         }
+
+        fun getByColour(itemColor: Int): de.hype.bingonet.shared.constants.Formatting? {
+            return entries.firstOrNull { it.color?.rgb == itemColor }
+        }
     }
 }

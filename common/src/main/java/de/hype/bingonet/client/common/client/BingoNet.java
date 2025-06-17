@@ -181,7 +181,6 @@ public class BingoNet {
         }
         try {
             addonManager = new AddonManager();
-            UpdateListenerManager.init();
             EnvironmentCore.mcevents.registerAll();
         } catch (IOException e) {
             Chat.sendPrivateMessageToSelfError(e.getMessage());
