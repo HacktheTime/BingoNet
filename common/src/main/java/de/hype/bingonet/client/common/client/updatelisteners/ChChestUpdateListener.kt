@@ -14,6 +14,8 @@ import de.hype.bingonet.shared.constants.ValueableChChestItem
 import de.hype.bingonet.shared.objects.ChChestData
 import de.hype.bingonet.shared.objects.Position
 import de.hype.bingonet.shared.objects.RenderInformation
+import de.hype.bingonet.shared.packets.mining.SubscribeToChServer
+import de.hype.bingonet.shared.packets.mining.UnSubscribeToChServer
 
 
 class ChChestUpdateListener : UpdateListener() {
@@ -123,13 +125,14 @@ class ChChestUpdateListener : UpdateListener() {
                     }
 
                     ServerSwitchTask.onServerLeaveTask(Runnable {
-                        val unsubpacket = UnsubscribeFromChServer(serverId, EnvironmentCore.utils.getPlayers())
+                        val unsubpacket = UnSubscribeToChServer(serverId, EnvironmentCore.utils.getPlayers().toSet())
                         BingoNet.connection.sendPacket(unsubpacket)
                         if (bbsub != null) {
                             bbsub.unsubscribe = true
                             //I'm not updating the day since I fear that my server leave task would send bad data since the
                             // day is world based and my leave procs on new server join due too it being the only fabric
                             // event. The Tablist Data gets updated slower, and so it is for the Hypixel API Location Packet.
+                            // Also the reason why i even removed the closing time field from my unsubscribe packet.
                             bingoBrewersClient.sendTCP(bbsub)
                         }
                     }, false)

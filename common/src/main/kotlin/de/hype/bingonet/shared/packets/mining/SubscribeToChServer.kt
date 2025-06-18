@@ -18,4 +18,4 @@ class SubscribeToChServer
 class UnSubscribeToChServer
 /**
  * @param chest [ChestLobbyData] object containing the data
- */(val server: String, val closingTime: Instant, val players: Set<String>) : AbstractPacket(1, 1)
+ */(val server: String, val players: Set<String>) : AbstractPacket(1, 1)
