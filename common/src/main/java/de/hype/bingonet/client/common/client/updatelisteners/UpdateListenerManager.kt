@@ -14,8 +14,10 @@ import de.hype.bingonet.shared.packets.mining.ChChestPacket
 object UpdateListenerManager {
     var connection: de.hype.bingonet.client.common.communication.BBsentialConnection? = null
 
+    @JvmStatic
     var splashStatusUpdateListener: SplashStatusUpdateListener
 
+    @JvmStatic
     var chChestUpdateListener: ChChestUpdateListener
 
     init {
@@ -61,6 +63,7 @@ object UpdateListenerManager {
         chChestUpdateListener = ChChestUpdateListener()
     }
 
+    @JvmStatic
     fun onChChestDataReceived(packet: ChChestPacket) {
         if (packet.server.equals(BingoNet.dataStorage.serverId)) {
             if (showChChest(packet.chest.items)) {

@@ -1,9 +1,9 @@
 package de.hype.bingonet.client.common.client.updatelisteners
 
+import de.hype.bingonet.client.common.bingobrewers.BingoBrewersClient
 import de.hype.bingonet.client.common.bingobrewers.BingoBrewersPackets.SubscribeToCHServer
 import de.hype.bingonet.client.common.chat.handlers.toGoodString
 import de.hype.bingonet.client.common.client.BingoNet
-import de.hype.bingonet.client.common.client.BingoNet.bingoBrewersClient
 import de.hype.bingonet.client.common.client.objects.ServerSwitchTask
 import de.hype.bingonet.client.common.mclibraries.EnvironmentCore
 import de.hype.bingonet.client.common.objects.Waypoints
@@ -118,8 +118,8 @@ class ChChestUpdateListener : UpdateListener() {
                         bbsub.unsubscribe = false
                         bbsub.server = serverId
                         bbsub.day = EnvironmentCore.utils.getLobbyDay()
-                        bingoBrewersClient.sendTCP(bbsub)
-                        bingoBrewersClient.sendTCP(bbsub)
+                        BingoBrewersClient.sendTCP(bbsub)
+                        BingoBrewersClient.sendTCP(bbsub)
                     } else {
                         bbsub = null
                     }
@@ -133,7 +133,7 @@ class ChChestUpdateListener : UpdateListener() {
                             // day is world based and my leave procs on new server join due too it being the only fabric
                             // event. The Tablist Data gets updated slower, and so it is for the Hypixel API Location Packet.
                             // Also the reason why i even removed the closing time field from my unsubscribe packet.
-                            bingoBrewersClient.sendTCP(bbsub)
+                            BingoBrewersClient.sendTCP(bbsub)
                         }
                     }, false)
                 }

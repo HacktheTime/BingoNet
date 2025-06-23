@@ -52,7 +52,6 @@ public class BingoNet {
     //General Config needs to be first config!
     public static GeneralConfig generalConfig = new GeneralConfig();
     public static BingoBrewersIntegrationConfig bingoBrewersIntegrationConfig = new BingoBrewersIntegrationConfig();
-    public static BingoBrewersClient bingoBrewersClient;
     //All Other Configs
     public static DeveloperConfig developerConfig = new DeveloperConfig();
     public static DiscordConfig discordConfig = new DiscordConfig();
@@ -277,14 +276,6 @@ public class BingoNet {
         }
         hpModAPICore = new HypixelModAPICore();
         EnvironmentCore.utils.registerNetworkHandlers();
-        if (generalConfig.useBingoBrewersIntegration) {
-            try {
-                bingoBrewersClient = new BingoBrewersClient();
-            } catch (IOException e) {
-                e.printStackTrace();
-                Chat.sendPrivateMessageToSelfError("Could not connect to Bingobrewers");
-            }
-        }
     }
 
     public static String downloadJson(String urlString) throws Exception {

@@ -6,6 +6,7 @@ import de.hype.bingonet.client.common.client.BingoNet;
 import de.hype.bingonet.client.common.client.CustomGson;
 import de.hype.bingonet.client.common.communication.BBsentialConnection;
 import de.hype.bingonet.client.common.objects.InterceptPacketInfo;
+import de.hype.bingonet.shared.packets.base.ExpectReplyPacket;
 import de.jcm.discordgamesdk.Core;
 
 import java.util.ArrayList;
@@ -121,7 +122,7 @@ public class PacketUtils {
         for (int i = 0; i < intercepts.size(); i++) {
             InterceptPacketInfo intercept = intercepts.get(i);
             if (intercept.matches(packetClass)) {
-                if (packet.replyDate == intercept.getReplyId()) {
+                if (packet instanceof ExpectReplyPacket.ReplyPacket p && p.getReplyDate() == intercept.getReplyId()) {
                     if (!intercept.getIgnoreIfIntercepted() || !found) {
                         found = true;
                         if (intercept.getCancelPacket()) {

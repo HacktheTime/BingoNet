@@ -71,7 +71,7 @@ public class PacketManager {
         packets.add(new Packet<>(MinionDataResponse.RequestMinionDataPacket.class, connection::onRequestMinionDataPacket));
         packets.add(new Packet<>(MinionDataResponse.class, connection::dummy));
         packets.add(new Packet<>(RequestPartyStatePacket.class, PartyManager::onRequestPartyStatePacket));
-        packets.add(new Packet<>(ChChestPacket.class, (packet) -> UpdateListenerManager.onChChestDataReceived(packet.chest)));
-        packets.add(new Packet<>(ChestLobbyUpdatePacket.class, ((packet) -> UpdateListenerManager.onChLobbyDataReceived(packet))));
+        packets.add(new Packet<>(ChChestPacket.class, UpdateListenerManager::onChChestDataReceived));
+        packets.add(new Packet<>(ChestLobbyUpdatePacket.class, (UpdateListenerManager::onChLobbyDataReceived)));
     }
 }

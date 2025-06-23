@@ -17,6 +17,7 @@ import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ProfileComponent;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
@@ -65,7 +66,7 @@ public class MCEvents implements de.hype.bingonet.client.common.mclibraries.MCEv
             if (world.getBlockState(blockPos).getBlock() instanceof ChestBlock) {
                 try {
                     if (utils.getCurrentIsland().equals(Islands.CRYSTAL_HOLLOWS)) {
-                        UpdateListenerManager.chChestUpdateListener.addOpenedChest(new Position(blockPos.getX(), blockPos.getY(), blockPos.getZ()));
+                        UpdateListenerManager.getChChestUpdateListener().addOpenedChest(new Position(blockPos.getX(), blockPos.getY(), blockPos.getZ()));
                         IChestBlockEntityMixinAccess access = (IChestBlockEntityMixinAccess) world.getBlockEntity(blockPos);
                         //is it open already? if so ignore cause not new
                         if (access == null) return ActionResult.PASS;
@@ -105,17 +106,16 @@ public class MCEvents implements de.hype.bingonet.client.common.mclibraries.MCEv
     public void onArmorstandInteraction(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult hitResult, boolean use) {
         ModInitialiser.tutorialManager.clickedEntity(entity, use);
         if (entity instanceof ArmorStandEntity) {
-            ((ArmorStandEntity) entity).getArmorItems().forEach(itemStack -> {
-                if (itemStack.getItem() == Items.PLAYER_HEAD) {
-                    ProfileComponent profileComponent = itemStack.get(DataComponentTypes.PROFILE);
-                    if (profileComponent == null) return;
-                    String texture = profileComponent.properties().get("textures").stream().toList().getFirst().value();
-                    ClickableArmorStand armorStand = ClickableArmorStand.getFromTexture(texture);
+            var item = ((ArmorStandEntity) entity).getEquippedStack(EquipmentSlot.HEAD);
+            if (item.getItem() == Items.PLAYER_HEAD) {
+                ProfileComponent profileComponent = item.get(DataComponentTypes.PROFILE);
+                if (profileComponent == null) return;
+                String texture = profileComponent.properties().get("textures").stream().toList().getFirst().value();
+                ClickableArmorStand armorStand = ClickableArmorStand.getFromTexture(texture);
 //                    if (armorStand != null) Chat.sendPrivateMessageToSelfSuccess(armorStand.toString()+" was clicked");
-                    //TODO Maybe used for fairysouls here soon
-                }
-            });
+                //TODO Maybe used for fairysouls here soon
+            }
         }
+        ;
     }
-
 }

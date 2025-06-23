@@ -16,7 +16,6 @@ import de.hype.bingonet.fabric.tutorial.TutorialManager;
 import de.hype.bingonet.fabric.tutorial.nodes.CoordinateNode;
 import de.hype.bingonet.shared.compilation.sbenums.minions.Minion;
 import de.hype.bingonet.shared.compilation.sbenums.minions.MinionRepoManager;
-import de.hype.bingonet.shared.constants.ChChestItem;
 import de.hype.bingonet.shared.constants.Islands;
 import de.hype.bingonet.shared.constants.VanillaItems;
 import de.hype.bingonet.shared.objects.ChChestData;
@@ -41,7 +40,6 @@ import net.minecraft.client.option.ServerList;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.client.sound.PositionedSoundInstance;
-import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.toast.Toast;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.client.util.ScreenshotRecorder;
@@ -69,7 +67,6 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
 import java.util.List;
@@ -79,6 +76,7 @@ import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 import static de.hype.bingonet.client.common.client.BingoNet.*;
+import static net.minecraft.item.equipment.EquipmentType.HELMET;
 
 public class Utils implements de.hype.bingonet.client.common.mclibraries.Utils {
     ModContainer self = FabricLoader.getInstance().getAllMods().stream().filter(modContainer -> modContainer.getMetadata().getId().equals("bingonet")).toList().get(0);
@@ -369,18 +367,16 @@ public class Utils implements de.hype.bingonet.client.common.mclibraries.Utils {
             }
             if (!isInRadius(MinecraftClient.getInstance().player, player, 5)) continue;
             if (doPants) {
-                for (ItemStack armorItem : player.getArmorItems()) {
-                    try {
-                        NbtComponent customData = armorItem.get(DataComponentTypes.CUSTOM_DATA);
-                        if (customData == null) continue;
-                        String hypixelId = customData.copyNbt().getString("id");
-                        if (hypixelId != null && hypixelId.equals("MUSIC_PANTS")) {
-                            prefix = "§4[♪]§r ";
-                            display = true;
-                        }
-                    } catch (Exception ignored) {
-                        continue;
+                ItemStack armorItem = player.getInventory().getStack(HELMET.getEquipmentSlot().getEntitySlotId());
+                try {
+                    NbtComponent customData = armorItem.get(DataComponentTypes.CUSTOM_DATA);
+                    if (customData == null) continue;
+                    String hypixelId = customData.copyNbt().getString("id").orElseGet(() -> null);
+                    if (hypixelId != null && hypixelId.equals("MUSIC_PANTS")) {
+                        prefix = "§4[♪]§r ";
+                        display = true;
                     }
+                } catch (Exception ignored) {
                 }
             }
 
@@ -455,23 +451,24 @@ public class Utils implements de.hype.bingonet.client.common.mclibraries.Utils {
 
         // Execute the screenshot task on the main thread
         minecraftClient.execute(() -> {
-            NativeImage image = ScreenshotRecorder.takeScreenshot(minecraftClient.getFramebuffer());
-            int[] intArray = image.copyPixelsArgb();
-            image.close();
-            ByteBuffer buffer = ByteBuffer.allocate(intArray.length * 4);
-            for (int value : intArray) {
-                buffer.putInt(value);
-            }
-            buffer.flip();
+            ScreenshotRecorder.takeScreenshot(minecraftClient.getFramebuffer(), image -> {
+                int[] intArray = image.copyPixelsArgb();
+                image.close();
+                ByteBuffer buffer = ByteBuffer.allocate(intArray.length * 4);
+                for (int value : intArray) {
+                    buffer.putInt(value);
+                }
+                buffer.flip();
 
-            byte[] byteArray = new byte[buffer.remaining()];
-            buffer.get(byteArray);
+                byte[] byteArray = new byte[buffer.remaining()];
+                buffer.get(byteArray);
 
-            synchronized (screenshotInputStream) {
-                screenshotInputStream.set(0, new ByteArrayInputStream(byteArray));
-                isWaiting.set(false);
-                screenshotInputStream.notifyAll();
-            }
+                synchronized (screenshotInputStream) {
+                    screenshotInputStream.set(0, new ByteArrayInputStream(byteArray));
+                    isWaiting.set(false);
+                    screenshotInputStream.notifyAll();
+                }
+            });
         });
 
         synchronized (screenshotInputStream) {
@@ -530,7 +527,7 @@ public class Utils implements de.hype.bingonet.client.common.mclibraries.Utils {
     }
 
     public void renderOverlays(DrawContext drawContext, RenderTickCounter v) {
-        if (UpdateListenerManager.splashStatusUpdateListener.showOverlay()) {
+        if (UpdateListenerManager.getSplashStatusUpdateListener().showOverlay()) {
             // Set the starting position for the overlay
             int x = 10;
             int y = 10;
@@ -546,52 +543,27 @@ public class Utils implements de.hype.bingonet.client.common.mclibraries.Utils {
                 drawContext.drawText(MinecraftClient.getInstance().textRenderer, text, x, y, 0xFFFFFF, true);
                 y += 10; // Adjust the vertical position for the next string
             }
-        } else if (UpdateListenerManager.chChestUpdateListener.showOverlay()) {
-            ChChestUpdateListener listener = UpdateListenerManager.chChestUpdateListener;
+        } else if (UpdateListenerManager.getChChestUpdateListener().showOverlay()) {
+            ChChestUpdateListener listener = UpdateListenerManager.getChChestUpdateListener();
 
             int x = 10;
             int y = 15;
             List<Text> toRender = new ArrayList<>();
-            if (listener.isHoster) {
-                String status = listener.lobby.getStatus();
-                switch (status) {
-                    case "Open":
-                        status = "§aOpen";
-                        break;
-                    case "Closed":
-                        status = "§4Closed";
-                        break;
-                    case "Full":
-                        status = "Full";
-                        break;
-                }
-                String warpInfo = "§cFull";
-                int playerThatCanBeWarped = EnvironmentCore.utils.getMaximumPlayerCount() - EnvironmentCore.utils.getPlayerCount();
-                if (playerThatCanBeWarped >= 1) {
-                    warpInfo = "§a(" + playerThatCanBeWarped + ")";
-                }
 
-                toRender.add(Text.of("§6Status:§0 " + status + "§6 | Slots: " + warpInfo + "§6"));
-                long closingTimeInMinutes = Duration.between(Instant.now(), getLobbyClosingTime()).toMinutes();
-                if (closingTimeInMinutes <= 0) {
-                    toRender.add(Text.of("§4Lobby Closed"));
-                } else {
-                    toRender.add(Text.of("§6Closing in " + closingTimeInMinutes / 60 + "h | " + closingTimeInMinutes % 60 + "m"));
-                }
-                for (ChChestData chest : listener.getUnopenedChests()) {
-                    if (chest.getFinder().equals(generalConfig.getUsername())) continue;
-                    toRender.add(Text.of("(" + chest.coords.toString() + ") [ %s ]:".formatted(chest.getFinder())));
-                    chest.items.stream().map(ChChestItem::getDisplayName).forEach((string) -> toRender.add(Text.of(string)));
-                }
-            } else {
-                toRender.add(Text.of("§4Please Leave the Lobby after getting all the Chests to allow people to be warped in!"));
-                for (ChChestData chest : listener.getUnopenedChests()) {
-                    String author = "";
-                    if (!listener.lobby.getContactMan().equalsIgnoreCase(chest.getFinder()))
-                        author = " [" + chest.getFinder() + "]";
-                    toRender.add(Text.of("(" + chest.coords + ")" + author + ":"));
-                    chest.items.stream().map(ChChestItem::getDisplayName).forEach((string) -> toRender.add(Text.of(string)));
-                }
+            for (ChChestData chest : listener.getUnopenedChests()) {
+                String author = "";
+                toRender.add(Text.of("(" + chest.coords + ")" + author + ":"));
+                chest.items.entrySet().stream().map(it -> {
+                    var item = it.getKey();
+                    var count = it.getValue();
+                    var countString = count.getFirst() == count.getLast() ? count.getFirst() : count.getFirst() + "-" + count.getLast();
+                    return "%s%s: %s%s".formatted(
+                            item.getItemFormatting(),
+                            item.getDisplayName(),
+                            item.getCountFormatting(),
+                            countString
+                    );
+                }).forEach((string) -> toRender.add(Text.of(string)));
             }
             for (Text text : toRender) {
                 drawContext.drawText(MinecraftClient.getInstance().textRenderer, text, x, y, 0xFFFFFF, true);

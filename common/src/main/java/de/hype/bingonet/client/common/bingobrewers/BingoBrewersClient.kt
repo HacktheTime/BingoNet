@@ -15,7 +15,7 @@ object BingoBrewersClient {
     private var listener: Listener? = null
 
     init {
-        init()
+        if (BingoNet.generalConfig.useBingoBrewersIntegration) init()
     }
 
     @Throws(IOException::class)

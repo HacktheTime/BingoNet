@@ -21,16 +21,16 @@ public class NBTCompound implements de.hype.bingonet.client.common.mclibraries.i
 
     @Override
     public Long getLong(String key) {
-        return mcCompound.getLong(key);
+        return mcCompound.getLong(key).orElseGet(() -> null);
     }
 
     @Override
     public int getInt(String key) {
-        return mcCompound.getInt(key);
+        return mcCompound.getInt(key).orElseGet(() -> null);
     }
 
     @Override
     public String get(String key) {
-        return mcCompound.get(key).asString();
+        return mcCompound.get(key).asString().orElseGet(() -> null);
     }
 }

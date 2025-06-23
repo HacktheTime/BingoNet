@@ -5,6 +5,7 @@ import de.hype.bingonet.client.common.client.BingoNet;
 import de.hype.bingonet.environment.packetconfig.AbstractPacket;
 import de.hype.bingonet.shared.constants.Islands;
 import de.hype.bingonet.shared.objects.Position;
+import de.hype.bingonet.shared.packets.function.MinionDataResponse;
 import javazoom.jl.player.advanced.AdvancedPlayer;
 import javazoom.jl.player.advanced.PlaybackEvent;
 import javazoom.jl.player.advanced.PlaybackListener;
@@ -208,7 +209,7 @@ public interface Utils {
 
     Instant getLobbyClosingTime();
 
-    AbstractPacket getMiniondata();
+    MinionDataResponse getMiniondata();
 
     void connectToServer(String s, Map<String, Double> commands);
 

@@ -88,8 +88,8 @@ public class ClickItemNode extends AbstractTutorialNode {
         }
         NbtCompound compound = component.copyNbt();
         if (compound == null) return map;
-        map.put("id", compound.getString("id"));
-        String petInfo = compound.getString("petInfo");
+        map.put("id", compound.getString("id").orElseGet(() -> null));
+        String petInfo = compound.getString("petInfo").orElseGet(() -> null);
         if (petInfo != null) map.put("petInfo", petInfo);
         map.put("enchantments", compound.getCompound("enchantments").toString());
         return map;

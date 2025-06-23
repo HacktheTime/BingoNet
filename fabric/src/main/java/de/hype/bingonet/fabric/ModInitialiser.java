@@ -313,7 +313,7 @@ public class ModInitialiser implements ClientModInitializer {
                                                     .requires(req -> tutorialManager.recording && tutorialManager.current != null)
                                             ).then(literal("obtainItemHeld").then(argument("count", IntegerArgumentType.integer(1))
                                                     .executes((context -> {
-                                                        ObtainItemNode itemNode = new ObtainItemNode(MinecraftClient.getInstance().player.getInventory().getMainHandStack(), IntegerArgumentType.getInteger(context, "count"));
+                                                        ObtainItemNode itemNode = new ObtainItemNode(MinecraftClient.getInstance().player.getMainHandStack(), IntegerArgumentType.getInteger(context, "count"));
                                                         if (itemNode.stackMap.isEmpty()) {
                                                             Chat.sendPrivateMessageToSelfError("This Item does not have a Skyblock Id and thereby can not be added to the List!");
                                                             return 0;

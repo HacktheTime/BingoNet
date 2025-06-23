@@ -438,8 +438,6 @@ class BBsentialConnection {
                 Chat.sendPrivateMessageToSelfInfo("Bingo Net Server requested party leave")
                 Chat.sendCommand("/p leave")
             }
-        } else {
-            packet.preparePacketToReplyToThis()
         }
     }
 
@@ -610,7 +608,7 @@ class BBsentialConnection {
         if (packet.minimumPlayerCount != null && packet.minimumPlayerCount!! >= playerCount.size) return
         if (packet.username != null && !playerCount.contains(packet.username)) return
         sendPacket(
-            packet.preparePacketToReplyToThis<WantedSearchPacketReply>(
+            packet.preparePacketToReplyToThis(
                 WantedSearchPacketReply(
                     BingoNet.generalConfig.getUsername(),
                     EnvironmentCore.utils.getPlayers(),

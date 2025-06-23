@@ -17,6 +17,7 @@ import de.hype.bingonet.shared.objects.Position;
 import de.hype.bingonet.shared.objects.SplashData;
 import de.hype.bingonet.shared.objects.SplashLocation;
 import de.hype.bingonet.shared.objects.SplashLocations;
+import de.hype.bingonet.shared.packets.function.RequestServerWarpPacket;
 import de.hype.bingonet.shared.packets.function.SplashNotifyPacket;
 import de.hype.bingonet.shared.packets.mining.MiningEventPacket;
 import de.hype.bingonet.shared.packets.network.BingoChatMessagePacket;
@@ -313,9 +314,9 @@ public class Commands implements MCCommand {
                         literal("getLeecher")
                                 .executes((context) -> {
                                     BingoNet.executionService.execute(() -> {
-                                        UpdateListenerManager.splashStatusUpdateListener.showOverlay = true;
+                                        UpdateListenerManager.getSplashStatusUpdateListener().showOverlay = true;
                                         Chat.sendPrivateMessageToSelfInfo("Leeching Players: " + String.join(", ", EnvironmentCore.utils.getSplashLeechingPlayers()));
-                                        BingoNet.executionService.schedule(() -> UpdateListenerManager.splashStatusUpdateListener.showOverlay = false,
+                                        BingoNet.executionService.schedule(() -> UpdateListenerManager.getSplashStatusUpdateListener().showOverlay = false,
                                                 2, TimeUnit.MINUTES);
                                     });
                                     return 1;

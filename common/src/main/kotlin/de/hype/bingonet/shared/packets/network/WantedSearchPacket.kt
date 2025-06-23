@@ -2,12 +2,13 @@ package de.hype.bingonet.shared.packets.network
 
 import de.hype.bingonet.environment.packetconfig.AbstractPacket
 import de.hype.bingonet.shared.constants.Islands
+import de.hype.bingonet.shared.packets.base.ExpectReplyPacket
 
 
 /**
  * Used to find collect Data across Servers. Can be used to find Users or Lobbies by ID
  */
-class WantedSearchPacket : AbstractPacket {
+class WantedSearchPacket : ExpectReplyPacket<WantedSearchPacket.WantedSearchPacketReply> {
     var targetFound: Boolean = true
     var username: String?
     var island: Islands? = null
@@ -42,7 +43,7 @@ class WantedSearchPacket : AbstractPacket {
         @JvmField var usernames: MutableList<String>,
         var megaServer: Boolean,
         @JvmField var serverId: String
-    ) : AbstractPacket(1, 1) {
+    ) : ExpectReplyPacket.ReplyPacket() {
         var currentPlayerCount: Int = usernames.size
 
     }

@@ -201,8 +201,8 @@ public class Chat {
         }
     }
 
-    public static String getFirstGreenSelectOption(String jsonString) {
-        JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
+    public static String getFirstGreenSelectOption(de.hype.bingonet.client.common.chat.Message message) {
+        JsonObject jsonObject = JsonParser.parseString(message.getJson()).getAsJsonObject();
         JsonArray extraArray = jsonObject.getAsJsonArray("extra");
 
         for (JsonElement element : extraArray) {
@@ -211,9 +211,9 @@ public class Chat {
 
             // Check if the text contains green color code
             if (text.contains("§a")) {
-                JsonObject clickEvent = extraObject.getAsJsonObject("clickEvent");
+                JsonObject clickEvent = extraObject.getAsJsonObject("click_event");
                 if (clickEvent != null && "run_command".equals(clickEvent.get("action").getAsString())) {
-                    return clickEvent.get("value").getAsString();
+                    return clickEvent.get("command").getAsString();
                 }
             }
         }
@@ -302,11 +302,9 @@ public class Chat {
         } else if (message.isServerMessage()) {
             if (PartyManager.handleMessage(messageUnformatted, message.getNoRanks())) return;
             if (messageUnformatted.startsWith("Select an option:")) {
-                setChatCommand(getFirstGreenSelectOption(message.getJson()), 10);
+                setChatCommand(getFirstGreenSelectOption(message), 10);
             } else if (messageUnformatted.startsWith("BUFF! You splashed yourself with")) {
-                if (UpdateListenerManager.splashStatusUpdateListener != null) {
-                    UpdateListenerManager.splashStatusUpdateListener.setStatus(StatusConstants.SPLASHING);
-                }
+                UpdateListenerManager.getSplashStatusUpdateListener().setStatus(StatusConstants.SPLASHING);
             } else if (messageUnformatted.equals("Click here to purchase a new 6 hour pass for 10,000 Coins")) {
                 Chat.sendPrivateMessageToSelfText(Message.tellraw("[\"\",\"You can press \",{\"keybind\":\"Chat Prompt Yes / Open Menu\",\"color\":\"green\"},\" to buy it.\"]"));
                 setChatCommand("/purchasecrystallhollowspass", 30);

@@ -190,7 +190,8 @@ public abstract class RenderingDefinitions {
                     if (key.equals("enchantments")) continue;
                     if (key.equals("timestamp")) {
                         Long stamp = compound.getLong(key);
-                        lore.add(EnvironmentCore.textutils.createText("timestamp(Creation Date): " + stamp + "(" + Instant.ofEpochMilli(stamp) + ")"));
+                        if (stamp != null)
+                            lore.add(EnvironmentCore.textutils.createText("timestamp(Creation Date): " + stamp + "(" + Instant.ofEpochMilli(stamp) + ")"));
                         continue;
                     }
                     lore.add(EnvironmentCore.textutils.createText(key + ": " + compound.get(key)));
