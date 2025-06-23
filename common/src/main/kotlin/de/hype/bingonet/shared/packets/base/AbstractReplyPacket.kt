@@ -2,7 +2,6 @@ package de.hype.bingonet.shared.packets.base
 
 import de.hype.bingonet.environment.packetconfig.AbstractPacket
 import java.util.*
-import java.util.concurrent.CompletableFuture
 
 open class ExpectReplyPacket<RespondPacket : ExpectReplyPacket.ReplyPacket> protected constructor(
     version: Int,

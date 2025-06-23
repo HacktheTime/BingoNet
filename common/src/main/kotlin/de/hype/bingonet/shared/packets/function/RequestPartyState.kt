@@ -13,5 +13,12 @@ class RequestPartyStatePacket : ExpectReplyPacket<RequestPartyStatePacket.PartyS
         val currentPartySize: Int,
         val isLeader: Boolean,
         val canInvitePlayers: Boolean
-    ) : ReplyPacket()
+    ) : ReplyPacket() {
+        public fun canBeUsedForWarp(): Boolean {
+            if (!allowServerPartyInvite) return false
+            if (!isInParty) return true
+            if (isLeader && allPlayersInLobby) return true
+            return false
+        }
+    }
 }
