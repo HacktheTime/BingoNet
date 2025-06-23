@@ -6,9 +6,6 @@ import de.hype.bingonet.fabric.objects.WorldRenderLastEvent
 import de.hype.bingonet.shared.objects.RenderInformation
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.font.TextRenderer
-import net.minecraft.client.gl.Defines
-import net.minecraft.client.gl.ShaderProgramKey
-import net.minecraft.client.gl.VertexBuffer
 import net.minecraft.client.render.*
 import net.minecraft.client.texture.Sprite
 import net.minecraft.client.util.math.MatrixStack
@@ -25,54 +22,16 @@ import java.lang.Math.pow
  * @author nea89o in Firmanent
  */
 class RenderInWorldContext(
-    private val tesselator: Tessellator,
     val matrixStack: MatrixStack,
     private val camera: Camera,
     private val tickCounter: RenderTickCounter,
     val vertexConsumers: VertexConsumerProvider.Immediate,
 ) {
-    object RenderLayers {
-        val TRANSLUCENT_TRIS = RenderLayer.of(
-            "bingonet_translucent_tris",
-            VertexFormats.POSITION_COLOR,
-            VertexFormat.DrawMode.TRIANGLES,
-            RenderLayer.CUTOUT_BUFFER_SIZE,
-            false, true,
-            RenderLayer.MultiPhaseParameters.builder()
-                .depthTest(RenderPhase.ALWAYS_DEPTH_TEST)
-                .transparency(RenderPhase.TRANSLUCENT_TRANSPARENCY)
-                .program(RenderPhase.POSITION_COLOR_PROGRAM)
-                .build(false)
-        )
-        val LINES = RenderLayer.of(
-            "bingonet_rendertype_lines",
-            VertexFormats.LINES,
-            VertexFormat.DrawMode.LINES,
-            RenderLayer.CUTOUT_BUFFER_SIZE,
-            false, false, // do we need translucent? i dont think so
-            RenderLayer.MultiPhaseParameters.builder()
-                .depthTest(RenderPhase.ALWAYS_DEPTH_TEST)
-                .program(FirmamentShaders.LINES)
-                .build(false)
-        )
-        val COLORED_QUADS = RenderLayer.of(
-            "bingonet_quads",
-            VertexFormats.POSITION_COLOR,
-            VertexFormat.DrawMode.QUADS,
-            RenderLayer.CUTOUT_BUFFER_SIZE,
-            false, true,
-            RenderLayer.MultiPhaseParameters.builder()
-                .depthTest(RenderPhase.ALWAYS_DEPTH_TEST)
-                .program(RenderPhase.POSITION_COLOR_PROGRAM)
-                .transparency(RenderPhase.TRANSLUCENT_TRANSPARENCY)
-                .build(false)
-        )
-    }
 
     fun block(blockPos: BlockPos, color: Int) {
         matrixStack.push()
         matrixStack.translate(blockPos.x.toFloat(), blockPos.y.toFloat(), blockPos.z.toFloat())
-        buildCube(matrixStack.peek().positionMatrix, vertexConsumers.getBuffer(RenderLayers.COLORED_QUADS), color)
+        buildCube(matrixStack.peek().positionMatrix, vertexConsumers.getBuffer(CustomRenderLayers.COLORED_QUADS), color)
         matrixStack.pop()
     }
 
@@ -203,7 +162,7 @@ class RenderInWorldContext(
         matrixStack.translate(vec3d.x, vec3d.y, vec3d.z)
         matrixStack.scale(size, size, size)
         matrixStack.translate(-.5, -.5, -.5)
-        buildCube(matrixStack.peek().positionMatrix, vertexConsumers.getBuffer(RenderLayers.COLORED_QUADS), color)
+        buildCube(matrixStack.peek().positionMatrix, vertexConsumers.getBuffer(CustomRenderLayers.COLORED_QUADS), color)
         matrixStack.pop()
         vertexConsumers.draw()
     }
@@ -230,8 +189,7 @@ class RenderInWorldContext(
 
     fun line(points: List<Vec3d>, lineWidth: Float = 10F, color: Color = Color.WHITE) {
         RenderSystem.lineWidth(lineWidth)
-        // TODO: replace with renderlayers
-        val buffer = tesselator.begin(VertexFormat.DrawMode.LINES, VertexFormats.LINES)
+        val buffer = vertexConsumers.getBuffer(CustomRenderLayers.LINES)
 
         val matrix = matrixStack.peek()
         var lastNormal: Vector3f? = null
@@ -246,8 +204,6 @@ class RenderInWorldContext(
             buffer.vertex(matrix.positionMatrix, b.x.toFloat(), b.y.toFloat(), b.z.toFloat())
                 .normal(matrix, normal.x, normal.y, normal.z).color(color.rgb).next()
         }
-
-        RenderLayers.LINES.draw(buffer.end())
     }
     // TODO: put the favourite icons in front of items again
 
@@ -317,16 +273,10 @@ class RenderInWorldContext(
         fun renderInWorld(event: WorldRenderLastEvent, block: RenderInWorldContext. () -> Unit) {
             // TODO: there should be *no more global state*. the only thing we should be doing is render layers. that includes settings like culling, blending, shader color, and depth testing
             // For now i will let these functions remain, but this needs to go before i do a full (non-beta) release
-            RenderSystem.disableDepthTest()
-            RenderSystem.enableBlend()
-            RenderSystem.defaultBlendFunc()
-            RenderSystem.disableCull()
-
             event.matrices.push()
             event.matrices.translate(-event.camera.pos.x, -event.camera.pos.y, -event.camera.pos.z)
 
             val ctx = RenderInWorldContext(
-                RenderSystem.renderThreadTesselator(),
                 event.matrices,
                 event.camera,
                 event.tickCounter,
@@ -338,10 +288,6 @@ class RenderInWorldContext(
             event.matrices.pop()
             event.vertexConsumers.draw()
             RenderSystem.setShaderColor(1F, 1F, 1F, 1F)
-            VertexBuffer.unbind()
-            RenderSystem.enableDepthTest()
-            RenderSystem.enableCull()
-            RenderSystem.disableBlend()
         }
     }
 
@@ -431,17 +377,4 @@ fun VertexConsumer.next() = this
 
 fun getFontHeight(): Float {
     return MinecraftClient.getInstance().textRenderer.fontHeight.toFloat()
-}
-
-
-object FirmamentShaders {
-    val shaders = mutableListOf<ShaderProgramKey>()
-
-    private fun shader(name: String, format: VertexFormat, defines: Defines): ShaderProgramKey {
-        val key = ShaderProgramKey(Identifier.of("bingonet", name), format, defines)
-        shaders.add(key)
-        return key
-    }
-
-    val LINES = RenderPhase.ShaderProgram(shader("core/rendertype_lines", VertexFormats.LINES, Defines.EMPTY))
 }

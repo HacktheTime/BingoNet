@@ -41,7 +41,6 @@ import net.minecraft.client.option.ServerList;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.client.sound.PositionedSoundInstance;
-import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.toast.Toast;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.client.util.ScreenshotRecorder;
@@ -79,6 +78,7 @@ import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 import static de.hype.bingonet.client.common.client.BingoNet.*;
+import static net.minecraft.item.equipment.EquipmentType.HELMET;
 
 public class Utils implements de.hype.bingonet.client.common.mclibraries.Utils {
     ModContainer self = FabricLoader.getInstance().getAllMods().stream().filter(modContainer -> modContainer.getMetadata().getId().equals("bingonet")).toList().get(0);
@@ -369,18 +369,16 @@ public class Utils implements de.hype.bingonet.client.common.mclibraries.Utils {
             }
             if (!isInRadius(MinecraftClient.getInstance().player, player, 5)) continue;
             if (doPants) {
-                for (ItemStack armorItem : player.getArmorItems()) {
-                    try {
-                        NbtComponent customData = armorItem.get(DataComponentTypes.CUSTOM_DATA);
-                        if (customData == null) continue;
-                        String hypixelId = customData.copyNbt().getString("id");
-                        if (hypixelId != null && hypixelId.equals("MUSIC_PANTS")) {
-                            prefix = "§4[♪]§r ";
-                            display = true;
-                        }
-                    } catch (Exception ignored) {
-                        continue;
+                ItemStack armorItem = player.getInventory().getStack(HELMET.getEquipmentSlot().getEntitySlotId());
+                try {
+                    NbtComponent customData = armorItem.get(DataComponentTypes.CUSTOM_DATA);
+                    if (customData == null) continue;
+                    String hypixelId = customData.copyNbt().getString("id").orElseGet(() -> null);
+                    if (hypixelId != null && hypixelId.equals("MUSIC_PANTS")) {
+                        prefix = "§4[♪]§r ";
+                        display = true;
                     }
+                } catch (Exception ignored) {
                 }
             }
 
@@ -455,23 +453,24 @@ public class Utils implements de.hype.bingonet.client.common.mclibraries.Utils {
 
         // Execute the screenshot task on the main thread
         minecraftClient.execute(() -> {
-            NativeImage image = ScreenshotRecorder.takeScreenshot(minecraftClient.getFramebuffer());
-            int[] intArray = image.copyPixelsArgb();
-            image.close();
-            ByteBuffer buffer = ByteBuffer.allocate(intArray.length * 4);
-            for (int value : intArray) {
-                buffer.putInt(value);
-            }
-            buffer.flip();
+            ScreenshotRecorder.takeScreenshot(minecraftClient.getFramebuffer(), image -> {
+                int[] intArray = image.copyPixelsArgb();
+                image.close();
+                ByteBuffer buffer = ByteBuffer.allocate(intArray.length * 4);
+                for (int value : intArray) {
+                    buffer.putInt(value);
+                }
+                buffer.flip();
 
-            byte[] byteArray = new byte[buffer.remaining()];
-            buffer.get(byteArray);
+                byte[] byteArray = new byte[buffer.remaining()];
+                buffer.get(byteArray);
 
-            synchronized (screenshotInputStream) {
-                screenshotInputStream.set(0, new ByteArrayInputStream(byteArray));
-                isWaiting.set(false);
-                screenshotInputStream.notifyAll();
-            }
+                synchronized (screenshotInputStream) {
+                    screenshotInputStream.set(0, new ByteArrayInputStream(byteArray));
+                    isWaiting.set(false);
+                    screenshotInputStream.notifyAll();
+                }
+            });
         });
 
         synchronized (screenshotInputStream) {

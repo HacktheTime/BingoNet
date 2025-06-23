@@ -1,13 +1,11 @@
 package de.hype.bingonet.fabric;
 
 import de.hype.bingonet.client.common.chat.Chat;
-import de.hype.bingonet.client.common.chat.Message;
 import de.hype.bingonet.client.common.client.BingoNet;
 import de.hype.bingonet.client.common.client.updatelisteners.UpdateListenerManager;
 import de.hype.bingonet.client.common.config.constants.ClickableArmorStand;
 import de.hype.bingonet.client.common.mclibraries.EnvironmentCore;
 import de.hype.bingonet.fabric.mixins.mixinaccessinterfaces.IChestBlockEntityMixinAccess;
-import de.hype.bingonet.shared.constants.ChChestItem;
 import de.hype.bingonet.shared.constants.Islands;
 import de.hype.bingonet.shared.objects.Position;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -19,6 +17,7 @@ import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ProfileComponent;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
@@ -31,9 +30,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 public class MCEvents implements de.hype.bingonet.client.common.mclibraries.MCEvents {
     public Utils utils = (Utils) EnvironmentCore.utils;
@@ -124,22 +121,21 @@ public class MCEvents implements de.hype.bingonet.client.common.mclibraries.MCEv
      * @param hand
      * @param entity
      * @param hitResult
-     * @param use whether it is a punch or an use on the entity. if true it is an right click (use)
+     * @param use       whether it is a punch or an use on the entity. if true it is an right click (use)
      */
     public void onArmorstandInteraction(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult hitResult, boolean use) {
-        ModInitialiser.tutorialManager.clickedEntity(entity,use);
+        ModInitialiser.tutorialManager.clickedEntity(entity, use);
         if (entity instanceof ArmorStandEntity) {
-            ((ArmorStandEntity) entity).getArmorItems().forEach(itemStack -> {
-                if (itemStack.getItem() == Items.PLAYER_HEAD) {
-                    ProfileComponent profileComponent = itemStack.get(DataComponentTypes.PROFILE);
-                    if (profileComponent == null) return;
-                    String texture = profileComponent.properties().get("textures").stream().toList().getFirst().value();
-                    ClickableArmorStand armorStand = ClickableArmorStand.getFromTexture(texture);
+            var item = ((ArmorStandEntity) entity).getEquippedStack(EquipmentSlot.HEAD);
+            if (item.getItem() == Items.PLAYER_HEAD) {
+                ProfileComponent profileComponent = item.get(DataComponentTypes.PROFILE);
+                if (profileComponent == null) return;
+                String texture = profileComponent.properties().get("textures").stream().toList().getFirst().value();
+                ClickableArmorStand armorStand = ClickableArmorStand.getFromTexture(texture);
 //                    if (armorStand != null) Chat.sendPrivateMessageToSelfSuccess(armorStand.toString()+" was clicked");
-                    //TODO Maybe used for fairysouls here soon
-                }
-            });
+                //TODO Maybe used for fairysouls here soon
+            }
         }
+        ;
     }
-
 }

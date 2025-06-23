@@ -68,17 +68,17 @@ public abstract class InventoryKeyBinds<T extends ScreenHandler> extends Screen 
                     NbtComponent customData = focusedSlot.getStack().get(DataComponentTypes.CUSTOM_DATA);
                     if (customData == null) return;
                     NbtCompound data = customData.copyNbt();
-                    String id = data.getString("id");
+                    String id = data.getString("id").get();
                     String lowercaseID = id.toLowerCase();
                     String path = "";
                     if (lowercaseID.equals("enchanted_book")) {
-                        path = WordUtils.capitalize((new ArrayList<>(data.getCompound("enchantments").getKeys()).get(0).replace("ultimate_", "") + "_Enchantment").replace("_", " ")).replace(" ", "_");
+                        path = WordUtils.capitalize((new ArrayList<>(data.getCompound("enchantments").get().getKeys()).get(0).replace("ultimate_", "") + "_Enchantment").replace("_", " ")).replace(" ", "_");
                     } else if (lowercaseID.equals("pet")) {
-                        path = WordUtils.capitalize((JsonParser.parseString(data.getString("petInfo")).getAsJsonObject().get("type").getAsString().toLowerCase() + "_Pet").replace("_", " ")).replace(" ", "_");
+                        path = WordUtils.capitalize((JsonParser.parseString(data.getString("petInfo").get()).getAsJsonObject().get("type").getAsString().toLowerCase() + "_Pet").replace("_", " ")).replace(" ", "_");
                     } else if (lowercaseID.equals("potion")) {
-                        path = WordUtils.capitalize((data.getString("potion").toLowerCase().replace("xp", "XP") + "_Potion").replace("_", " ")).replace(" ", "_");
+                        path = WordUtils.capitalize((data.getString("potion").get().toLowerCase().replace("xp", "XP") + "_Potion").replace("_", " ")).replace(" ", "_");
                     } else if (lowercaseID.equals("rune")) {
-                        path = WordUtils.capitalize((new ArrayList<>(data.getCompound("runes").getKeys()).get(0).toLowerCase() + "_Rune").replace("_", " ")).replace(" ", "_");
+                        path = WordUtils.capitalize((new ArrayList<>(data.getCompound("runes").get().getKeys()).get(0).toLowerCase() + "_Rune").replace("_", " ")).replace(" ", "_");
                     } else {
                         path = id;
                     }
@@ -113,7 +113,7 @@ public abstract class InventoryKeyBinds<T extends ScreenHandler> extends Screen 
                         NbtComponent customData = focusedSlot.getStack().get(DataComponentTypes.CUSTOM_DATA);
                         if (customData == null) return;
                         NbtCompound data = customData.copyNbt();
-                        String id = data.getString("id");
+                        String id = data.getString("id").get();
                         BingoNet.executionService.execute(() -> {
                             for (List<@NotNull MinionData> value : MinionRepoManager.INSTANCE.getTypeMappedMinions().values()) {
                                 var minionItem = NeuRepoManager.INSTANCE.getItems().get(value.getFirst().getItemId());

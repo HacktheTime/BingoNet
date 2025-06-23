@@ -1,15 +1,15 @@
 [versions]
-modVersion = "0.99.3.7"
+modVersion = "0.99.3.8"
 kotlinVersion = "2.1.0"
 apache_httpcomponents = "4.5.13"
 lwjglModern = "3.3.3"
 
-minecraft_versionSupported = "1.21.4"
+minecraft_versionSupported = "1.21.5"
 
-modern_minecraft = "1.21.4"
-modern_yarn = "1.21.4+build.8"
-modern_fabric_loader = "0.16.10"
-modern_fabric_api = "0.115.1+1.21.4"
+modern_minecraft = "1.21.5"
+modern_yarn = "1.21.5+build.1"
+modern_fabric_loader = "0.16.14"
+modern_fabric_api = "0.127.1+1.21.5"
 
 legacy_mcp = "22-1.8.9"
 legacy_minecraft = "1.8.9"
@@ -17,8 +17,8 @@ legacy_forge = "1.8.9-11.15.1.2318-1.8.9"
 legacy_mixin_rt = "0.7.11-SNAPSHOT"
 legacy_mixin_processor = "0.8.5-SNAPSHOT"
 
-modmenu = "13.0.3"
-cloth = "17.0.144"
+modmenu = "14.0.0-rc.2"
+cloth = "18.0.145"
 
 devauth = "1.1.2"
 
@@ -46,7 +46,7 @@ modern_fabric_api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref
 modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }
 clothConfig = { module = "me.shedaniel.cloth:cloth-config-fabric", version.ref = "cloth" }
 modern_minecraft = { module = "com.mojang:minecraft", version.ref = "modern_minecraft" }
-appleClientCommands = { module = "dev.xpple:clientarguments", version = "1.9" }
+appleClientCommands = { module = "dev.xpple:clientarguments", version = "1.11.2" }
 
 guava = { module = "com.google.guava:guava", version = "latest.release" }
 commonsLang = { module = "org.apache.commons:commons-lang3", version = "latest.release" }
