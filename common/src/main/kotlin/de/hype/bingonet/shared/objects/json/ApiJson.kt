@@ -2,7 +2,6 @@ package de.hype.bingonet.shared.objects.json
 
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
-import kotlin.text.get
 
 class ApiJson {
     var isOffPath: Boolean = false
@@ -67,7 +66,7 @@ class ApiJson {
      */
     fun get(key: String): ApiJson {
         val copy = this.copy()
-        copy.path.addAll(listOf(*key.split("→".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()))
+        copy.path.addAll(key.split("→".toRegex()).dropLastWhile { it.isEmpty() })
         return copy
     }
 
@@ -95,7 +94,7 @@ class ApiJson {
         try {
             val pathSplit: Array<String> = id.split("→".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             val path: MutableList<String> = ArrayList(this.path)
-            path.addAll(listOf(*pathSplit).subList(0, pathSplit.size - 1))
+            path.addAll(pathSplit.toList().subList(0, pathSplit.size - 1))
             val safeObj = getJSONObjectSafe(path)
             if (safeObj == null) return ApiJsonElement(null)
             return ApiJsonElement(safeObj.get(pathSplit[pathSplit.size - 1]))

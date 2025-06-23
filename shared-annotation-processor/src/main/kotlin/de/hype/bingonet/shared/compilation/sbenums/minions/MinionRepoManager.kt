@@ -107,7 +107,7 @@ fun main() {
     val results: MutableMap<String, Pair<LinkedHashSet<NEUItem>, LinkedHashSet<NEUItem>>> = HashMap()
     var current = 1
     val size = NeuRepoManager.items.size
-    NeuRepoManager.items.forEach { (key, original) ->
+    NeuRepoManager.items.forEach { (_, original) ->
         val toCheckItems: MutableList<NEUItem> = mutableListOf(original)
         val compactorList: LinkedHashSet<NEUItem> = LinkedHashSet()
         val sc3000List: LinkedHashSet<NEUItem> = LinkedHashSet()
@@ -116,7 +116,7 @@ fun main() {
             val item = toCheckItems.removeFirst()
             first++
             var anyMatch = false
-            NeuRepoManager.items.forEach { (id, neuItem) ->
+            NeuRepoManager.items.forEach { (_, neuItem) ->
                 neuItem.recipes.forEach {
                     if (it !is NEUCraftingRecipe) return@forEach
                     val grouped = it.groupByItemId()
@@ -151,7 +151,7 @@ fun main() {
         }
         current++
     }
-    val result = results.map {
+    results.map {
         it.key + "," + it.value.component1().joinToString { it.skyblockItemId } + "," + it.value.component2()
             .joinToString { it.skyblockItemId }
     }

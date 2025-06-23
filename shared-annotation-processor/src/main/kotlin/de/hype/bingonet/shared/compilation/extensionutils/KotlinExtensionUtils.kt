@@ -58,3 +58,13 @@ fun <R, S> lazyRemap(
         }
     }
 
+fun <T : List<V>, V> T.subList(from: Int): List<V> {
+    if (from > size) return listOf()
+    return subList(from, size)
+}
+
+fun <T : List<V>, V> T.subListTo(to: Int): List<V> {
+    val to = to.coerceAtMost(size)
+    if (to <= 0) return listOf()
+    return subList(0, to)
+}

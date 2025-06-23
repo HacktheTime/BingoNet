@@ -3,68 +3,32 @@ package de.hype.bingonet.shared.objects
 import de.hype.bingonet.server.objects.BBUser
 import de.hype.bingonet.shared.constants.StatusConstants
 import de.hype.bingonet.shared.constants.TradeType
-import java.time.Instant
+import kotlinx.datetime.Clock
 
-open class BBServiceData(
-    @JvmField protected val type: TradeType?,
-    open var description: String,
-    open var hoster: BBUser,
-    @JvmField var price: Int,
-    @JvmField var helpers: MutableList<Helper>,
-    @JvmField var maxUsers: Int,
-    @JvmField var forceModOnline: Boolean
+data class BBServiceData(
+    val serviceId: Int,
+    val description: String,
+    val hosterUsername: String,
+    val type: TradeType?,
+    val price: Int,
+    val helpers: List<Helper>,
+    val maxUsers: Int,
+    val forceModOnline: Boolean,
+    val status: StatusConstants,
+    val title: String?,
+    val participants: List<Participant>,
+    val joinLock: Boolean,
+    val circulateParticipants: Boolean,
 ) {
-    var serviceId: Int = 0
 
-    @JvmField
-    var status: StatusConstants = StatusConstants.OPEN
 
-    @JvmField
-    var title: String? = null
-
-    open var participants: MutableList<Participant> = ArrayList<Participant>()
-
-    protected lateinit var dcMessageID: String
-
-    @JvmField
-    var joinLock: Boolean = false
-
-    @JvmField
-    var circulateParticipants: Boolean = false
-
-    constructor(
-        type: TradeType,
-        hoster: BBUser,
-        price: Int,
-        helpers: MutableList<Helper>,
-        forceModOnline: Boolean
-    ) : this(type, type.description, hoster, price, helpers, type.getMaximumUsers(helpers.size), forceModOnline)
-
-    class Participant(
-        @JvmField var user: BBUser,
-        @JvmField var priority: Boolean,
-        @JvmField var joinTime: Instant,
-        @JvmField var autoRequeue: Boolean,
-        @JvmField var price: Int
+    data class Participant(
+        @JvmField val user: BBUser,
+        @JvmField val price: Int,
+        @JvmField val priority: Boolean = false,
+        @JvmField val joinTime: kotlinx.datetime.Instant = Clock.System.now(),
+        @JvmField val autoRequeue: Boolean = false
     ) {
-        constructor(user: BBUser, priority: Boolean, free: Boolean, data: BBServiceData) : this(
-            user,
-            priority,
-            free,
-            Instant.now(),
-            false,
-            data
-        )
-
-        constructor(
-            user: BBUser,
-            priority: Boolean,
-            free: Boolean,
-            joinTime: Instant,
-            autoRequeue: Boolean,
-            data: BBServiceData
-        ) : this(user, priority, joinTime, autoRequeue, if (free) 0 else data.price)
-
         override fun equals(other: Any?): Boolean {
             if (other is Participant) return other.user == user
             if (other is BBUser) return other == this.user
@@ -74,13 +38,11 @@ open class BBServiceData(
         override fun hashCode(): Int {
             return user.hashCode()
         }
-
-
     }
 
     class Helper {
-        private var user: BBUser?
-        private var username: String?
+        private val user: BBUser?
+        private val username: String?
 
         constructor(user: BBUser) {
             this.user = user
@@ -119,3 +81,5 @@ open class BBServiceData(
         }
     }
 }
+
+

@@ -53,10 +53,4 @@ class RequestUserInfoPacket : AbstractPacket {
     fun hasRole(role: String?): Boolean {
         return roles.contains(role)
     }
-
-    companion object {
-        fun fromDCUserID(userId: Long, requestUpToDateData: Boolean): RequestUserInfoPacket {
-            return RequestUserInfoPacket(requestUpToDateData, null, null, userId, TODO())
-        }
-    }
 }
