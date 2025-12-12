@@ -1,3 +1,10 @@
+# This Projects Client Side (MC-Mod) got a rewrite based on SkyHanni. You can find the Code [HERE](https://github.com/HacktheTime/SkyHanni/)
+
+V1 of the Mod is only a old remeainder due to which it is marked as an archive.
+
+
+
+
 [![Discord](https://img.shields.io/discord/1145639466216738816?style=plastic&logo=discord)](https://discord.gg/qr5mPRq8uG)
 [![Modrinth](https://img.shields.io/modrinth/dt/bingonet?style=plastic&logo=modrinth)](https://modrinth.com/mod/bingonet)
 [![Github Releases](https://img.shields.io/github/downloads/HacktheTime/BingoNet/total?style=plastic&logo=github)](https://github.com/HacktheTime/bingonet/releases)
